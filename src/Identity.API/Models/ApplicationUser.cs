@@ -1,6 +1,8 @@
-﻿namespace Identity.API.Models
+﻿using Microsoft.AspNetCore.Identity;
+
+namespace Identity.API.Models
 {
-    public class ApplicationUser
+    public class ApplicationUser : IdentityUser
     {
     }
 }
