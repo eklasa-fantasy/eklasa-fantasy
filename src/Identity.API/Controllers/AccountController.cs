@@ -26,6 +26,7 @@ namespace Identity.API.Controllers
 
                 var appUser = new ApplicationUser
                 {
+                    UserName = registerDto.Username,
                     Email = registerDto.EmailAddress,
                 };
 

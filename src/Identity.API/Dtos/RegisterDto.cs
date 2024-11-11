@@ -5,6 +5,9 @@ namespace Identity.API.Dtos
     public class RegisterDto
     {
         [Required]
+        public string? Username { get; set; }
+
+        [Required]
         [EmailAddress]
         public string? EmailAddress {  get; set; }
         
