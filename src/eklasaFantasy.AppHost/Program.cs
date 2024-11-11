@@ -2,21 +2,38 @@ using Projects;
 
 var builder = DistributedApplication.CreateBuilder(args);
 
+// Databases
+var postgres = builder.AddPostgres("postgres")
+    .WithImage("ankane/pgvector")
+    .WithImageTag("latest");
+
+
+var identityDb = postgres.AddDatabase("identitydb");
+
+
 
 var launchProfileName = ShouldUseHttpForEndpoints() ? "http" : "https";
 
-//Services
+// Services
 var identityApi = builder.AddProject<Projects.Identity_API>("identity-api", launchProfileName)
     .WithExternalHttpEndpoints()
+    .WithReference(identityDb);
 ;
 
 var identityEndpoint = identityApi.GetEndpoint(launchProfileName);
 
+
+// Apps
 var webApp = builder
     .AddNpmApp("webApp", "../WebApp")
+    .WithExternalHttpEndpoints()
+    .WithEnvironment("IdentityUrl", identityEndpoint);
     //.WithHttpEndpoint(env: "PORT")
     ;
 
+
+
+//identityApi.WithEnvironment("WebAppClient", webApp.GetEndpoint(launchProfileName));
 
 
 builder.Build().Run();
