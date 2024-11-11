@@ -33,7 +33,7 @@ var webApp = builder
 
 
 
-identityApi.WithEnvironment("WebAppClient", webApp.GetEndpoint(launchProfileName));
+//identityApi.WithEnvironment("WebAppClient", webApp.GetEndpoint(launchProfileName));
 
 
 builder.Build().Run();
