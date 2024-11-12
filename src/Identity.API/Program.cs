@@ -15,7 +15,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.AddSqlServerDbContext<ApplicationDbContext>("identitydb");
+builder.AddSqlServerDbContext<ApplicationDbContext>("sqldata");
 //builder.AddNpgsqlDbContext<ApplicationDbContext>("identitydb");
 
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()

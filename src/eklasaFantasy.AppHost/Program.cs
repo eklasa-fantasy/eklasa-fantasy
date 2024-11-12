@@ -3,20 +3,19 @@ using Projects;
 var builder = DistributedApplication.CreateBuilder(args);
 
 // Configure SQL Server with existing instance
-var identityDb = builder.AddSqlServer("eklasaFantasy-sqlserver")
-    .WithDataVolume()
-    .WithHttpEndpoint(port: 5000, targetPort: 1433) // Assuming 1433 is the default SQL Server port
-    .AddDatabase("identityDb"); // Use existing database
+var sql = builder.AddSqlServer("sql")
+                 .AddDatabase("sqldata");
 
 
 var launchProfileName = ShouldUseHttpForEndpoints() ? "http" : "https";
 
 // Services
 var identityApi = builder.AddProject<Projects.Identity_API>("identity-api", launchProfileName)
-    .WithHttpEndpoint(port: 5001, name: "identity-http")
-    .WithExternalHttpEndpoints()
-    .WithReference(identityDb);
+    .WithReference(sql);
 ;
+
+builder.AddProject<Projects.Identity_MigrationService>("identity-migrations")
+    .WithReference(sql);
 
 var identityEndpoint = identityApi.GetEndpoint(launchProfileName);
 
