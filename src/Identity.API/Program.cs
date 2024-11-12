@@ -1,5 +1,7 @@
 using Identity.API.Data;
+using Identity.API.Interfaces;
 using Identity.API.Models;
+using Identity.API.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
@@ -43,6 +45,8 @@ builder.Services.AddAuthentication(options =>
             )
     };
 });
+
+builder.Services.AddScoped<ITokenService, TokenService>();
 
 var app = builder.Build();
 
