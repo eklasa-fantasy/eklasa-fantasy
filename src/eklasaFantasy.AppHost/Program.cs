@@ -23,7 +23,7 @@ var identityEndpoint = identityApi.GetEndpoint(launchProfileName);
 
 // Apps
 var webApp = builder
-    .AddNpmApp("webApp", "../WebApp")
+    .AddNpmApp("webApp", "../eklasaFantasy.WebApp")
     .WithExternalHttpEndpoints()
     .WithEnvironment("IdentityUrl", identityEndpoint);
     //.WithHttpEndpoint(env: "PORT")

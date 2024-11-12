@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "WebApp": {
+    "eklasaFantasy.WebApp": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -23,7 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/web-app",
+            "outputPath": "dist/eklasa-fantasy.web-app",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -69,16 +69,15 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "WebApp:build:production"
+              "buildTarget": "eklasaFantasy.WebApp:build:production"
             },
             "development": {
-              "buildTarget": "WebApp:build:development"
+              "buildTarget": "eklasaFantasy.WebApp:build:development"
             }
           },
           "defaultConfiguration": "development",
           "options": {
-            "proxyConfig": "proxy.conf.js",
-            "port": 52905
+            "port": 65018
           }
         },
         "extract-i18n": {
