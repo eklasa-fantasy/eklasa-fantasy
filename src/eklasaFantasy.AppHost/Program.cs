@@ -3,12 +3,14 @@ using Projects;
 var builder = DistributedApplication.CreateBuilder(args);
 
 // Databases
-var postgres = builder.AddPostgres("postgres")
+/*var postgres = builder.AddPostgres("postgres")
     .WithImage("ankane/pgvector")
-    .WithImageTag("latest");
+    .WithImageTag("latest");*/
+
+var sql = builder.AddSqlServer("sql");
 
 
-var identityDb = postgres.AddDatabase("identitydb");
+var identityDb = sql.AddDatabase("identitydb");
 
 
 
