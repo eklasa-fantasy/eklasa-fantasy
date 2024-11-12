@@ -2,21 +2,35 @@ using Projects;
 
 var builder = DistributedApplication.CreateBuilder(args);
 
+// Configure SQL Server with existing instance
+var sql = builder.AddSqlServer("sql")
+                 .AddDatabase("sqldata");
+
 
 var launchProfileName = ShouldUseHttpForEndpoints() ? "http" : "https";
 
-//Services
+// Services
 var identityApi = builder.AddProject<Projects.Identity_API>("identity-api", launchProfileName)
-    .WithExternalHttpEndpoints()
+    .WithReference(sql);
 ;
+
+builder.AddProject<Projects.Identity_MigrationService>("identity-migrations")
+    .WithReference(sql);
 
 var identityEndpoint = identityApi.GetEndpoint(launchProfileName);
 
+
+// Apps
 var webApp = builder
-    .AddNpmApp("webApp", "../WebApp")
+    .AddNpmApp("webApp", "../eklasaFantasy.WebApp")
+    .WithExternalHttpEndpoints()
+    .WithEnvironment("IdentityUrl", identityEndpoint);
     //.WithHttpEndpoint(env: "PORT")
     ;
 
+
+
+//identityApi.WithEnvironment("WebAppClient", webApp.GetEndpoint(launchProfileName));
 
 
 builder.Build().Run();
