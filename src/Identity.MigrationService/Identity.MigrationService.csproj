@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>dotnet-Identity.MigrationService-ab4d279a-40fc-47db-976b-22c5c3d839fc</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\eklasaFantasy.ServiceDefaults\eklasaFantasy.ServiceDefaults.csproj" />
+  </ItemGroup>
+</Project>
