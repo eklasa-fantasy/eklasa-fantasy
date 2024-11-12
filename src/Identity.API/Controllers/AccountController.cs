@@ -33,18 +33,18 @@ namespace Identity.API.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = await _userManager.Users.FirstOrDefaultAsync(x => x.UserName == loginDto.Username.ToLower());
+            var user = await _userManager.Users.FirstOrDefaultAsync(x => x.Email == loginDto.Email.ToLower());
 
             if (user == null)
             {
-                return Unauthorized("Invalid username!");
+                return Unauthorized("Invalid email!");
             }
 
             var result = await _signInManager.CheckPasswordSignInAsync(user, loginDto.Password, false);
 
             if (!result.Succeeded)
             {
-                return Unauthorized("Username not found and/or password incorrect");
+                return Unauthorized("Email not found and/or password incorrect");
             }
             else
             {
