@@ -2,30 +2,27 @@ using Projects;
 
 var builder = DistributedApplication.CreateBuilder(args);
 
-// Databases
-var postgres = builder.AddPostgres("postgres")
-    .WithImage("ankane/pgvector")
-    .WithImageTag("latest");
-
-
-var identityDb = postgres.AddDatabase("identitydb");
-
+// Configure SQL Server with existing instance
+var sql = builder.AddSqlServer("sql")
+                 .AddDatabase("sqldata");
 
 
 var launchProfileName = ShouldUseHttpForEndpoints() ? "http" : "https";
 
 // Services
 var identityApi = builder.AddProject<Projects.Identity_API>("identity-api", launchProfileName)
-    .WithExternalHttpEndpoints()
-    .WithReference(identityDb);
+    .WithReference(sql);
 ;
+
+builder.AddProject<Projects.Identity_MigrationService>("identity-migrations")
+    .WithReference(sql);
 
 var identityEndpoint = identityApi.GetEndpoint(launchProfileName);
 
 
 // Apps
 var webApp = builder
-    .AddNpmApp("webApp", "../WebApp")
+    .AddNpmApp("webApp", "../eklasaFantasy.WebApp")
     .WithExternalHttpEndpoints()
     .WithEnvironment("IdentityUrl", identityEndpoint);
     //.WithHttpEndpoint(env: "PORT")
