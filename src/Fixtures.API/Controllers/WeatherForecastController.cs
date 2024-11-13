@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace Identity.API.Controllers;
+namespace Fixtures.API.Controllers;
 
 [ApiController]
 [Route("[controller]")]
