@@ -1,4 +1,4 @@
-namespace Identity.API;
+namespace Fixtures.API;
 
 public class WeatherForecast
 {
