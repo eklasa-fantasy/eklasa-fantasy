@@ -14,18 +14,15 @@ namespace Identity.API.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ITokenService _tokenService;
         private readonly SignInManager<ApplicationUser> _signInManager;
-        private readonly IEmailSender<ApplicationUser> _emailSender;
         public AccountController(
             UserManager<ApplicationUser> userManager,
             ITokenService tokenService,
-            SignInManager<ApplicationUser> signInManager,
-            IEmailSender<ApplicationUser> emailSender
+            SignInManager<ApplicationUser> signInManager
             )
         {
             _userManager = userManager;
             _tokenService = tokenService;
             _signInManager = signInManager;
-            _emailSender = emailSender;
         }
 
         [HttpPost("login")]
@@ -112,37 +109,36 @@ namespace Identity.API.Controllers
             }
         }
 
+        [HttpPost("forgotPassword")]
+        public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordDto forgotPasswordDto){
+            try{
+                if(ModelState.IsValid){
+                    var user = await _userManager.Users.FirstOrDefaultAsync(x => x.Email == forgotPasswordDto.Email.ToLower());
 
-        [HttpGet("confirmEmail")]
-        public async Task<IActionResult> ConfirmEmail([FromBody] ConfirmEmailDto confirmEmailDto){
-            if(confirmEmailDto.UserId == null || confirmEmailDto.Token == null){
-                return BadRequest("Link is invalid or expired");
+                    if(user != null && await _userManager.IsEmailConfirmedAsync(user)){
+                        await SendForgotPasswordEmail(user.Email, user);
+
+                        return Ok("Password reset link has been sent");
+                    }
+                
+                    return Ok("Password reset link has been sent");
+                }
+
+                return BadRequest(ModelState);
+
+            }catch(Exception ex){
+                return StatusCode(500, ex);
             }
-
-            var user = await _userManager.FindByIdAsync(confirmEmailDto.UserId);
-
-            if(user == null){
-                return Unauthorized("User not found");
-            }
-
-            var result = await _userManager.ConfirmEmailAsync(user, confirmEmailDto.Token);
-
-            if(result.Succeeded){
-                return Ok("Email confirmed");
-            }
-
-            return BadRequest("Email cannot be confirmed");
         }
 
 
+        private async Task SendForgotPasswordEmail(string? email, ApplicationUser? user){
+            var token = await _userManager.GeneratePasswordResetTokenAsync(user);
 
-        private async Task SendConfirmationEmail(string? email, ApplicationUser? user){
-            var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+            var passwordResetLink = Url.Action("ResetPassword", "Account", new {Email = email, Token = token}, protocol: HttpContext.Request.Scheme);
 
-            var confirmationLink = Url.Action("ConfirmEmail", "Account", new {UserId = user.Id, Token = token}
-                , protocol: HttpContext.Request.Scheme);
+            await _emailSender.SendPasswordResetLinkAsync(user, email, passwordResetLink);
 
-            await _emailSender.SendConfirmationLinkAsync(user, email, confirmationLink);
         }
     }
 }
