@@ -14,15 +14,18 @@ namespace Identity.API.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ITokenService _tokenService;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly IEmailSender<ApplicationUser> _emailSender;
         public AccountController(
             UserManager<ApplicationUser> userManager,
             ITokenService tokenService,
-            SignInManager<ApplicationUser> signInManager
+            SignInManager<ApplicationUser> signInManager,
+            IEmailSender<ApplicationUser> emailSender
             )
         {
             _userManager = userManager;
             _tokenService = tokenService;
             _signInManager = signInManager;
+            _emailSender = emailSender;
         }
 
         [HttpPost("login")]
@@ -105,6 +108,38 @@ namespace Identity.API.Controllers
             {
                 return StatusCode(500, ex);
             }
+        }
+
+        [HttpPost("forgotPassword")]
+        public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordDto forgotPasswordDto){
+            try{
+                if(ModelState.IsValid){
+                    var user = await _userManager.Users.FirstOrDefaultAsync(x => x.Email == forgotPasswordDto.Email.ToLower());
+
+                    if(user != null && await _userManager.IsEmailConfirmedAsync(user)){
+                        await SendForgotPasswordEmail(user.Email, user);
+
+                        return Ok("Password reset link has been sent");
+                    }
+                
+                    return Ok("Password reset link has been sent");
+                }
+
+                return BadRequest(ModelState);
+
+            }catch(Exception ex){
+                return StatusCode(500, ex);
+            }
+        }
+
+
+        private async Task SendForgotPasswordEmail(string? email, ApplicationUser? user){
+            var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+
+            var passwordResetLink = Url.Action("ResetPassword", "Account", new {Email = email, Token = token}, protocol: HttpContext.Request.Scheme);
+
+            await _emailSender.SendPasswordResetLinkAsync(user, email, passwordResetLink);
+
         }
     }
 }
