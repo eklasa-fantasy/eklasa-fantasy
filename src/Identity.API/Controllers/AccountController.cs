@@ -4,6 +4,7 @@ using Identity.API.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using OpenTelemetry.Trace;
 
 namespace Identity.API.Controllers
 {
@@ -112,7 +113,6 @@ namespace Identity.API.Controllers
             }
         }
 
-
         [HttpGet("confirmEmail")]
         public async Task<IActionResult> ConfirmEmail([FromBody] ConfirmEmailDto confirmEmailDto){
             if(confirmEmailDto.UserId == null || confirmEmailDto.Token == null){
@@ -135,7 +135,62 @@ namespace Identity.API.Controllers
         }
 
 
+        [HttpPost("forgotPassword")]
+        public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordDto forgotPasswordDto){
+            try{
+                if(ModelState.IsValid){
+                    var user = await _userManager.Users.FirstOrDefaultAsync(x => x.Email == forgotPasswordDto.Email.ToLower());
 
+                    if(user != null && await _userManager.IsEmailConfirmedAsync(user)){
+                        await SendForgotPasswordEmail(user.Email, user);
+
+                        return Ok("Password reset link has been sent");
+                    }
+
+                    //aby uniknąć enumeracji/brute force
+                    return Ok("Password reset link has been sent");
+                }
+
+                return BadRequest(ModelState);
+
+            }catch(Exception ex){
+                return StatusCode(500, ex);
+            }
+        }
+
+
+
+        [HttpPost("resetPassword")]
+        public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordDto resetPasswordDto){
+            try
+            {
+                if(ModelState.IsValid){
+                    var user = await _userManager.Users.FirstOrDefaultAsync(x => x.Email == resetPasswordDto.Email.ToLower());
+
+                    if(user != null){
+                        var result = await _userManager.ResetPasswordAsync(user, resetPasswordDto.Token, resetPasswordDto.Password);
+
+                        if(result.Succeeded){
+                            return Ok("Password has been reset");
+                        }
+
+                        foreach(var error in result.Errors){
+                            ModelState.AddModelError("", error.Description);
+                        }
+                        return BadRequest(ModelState);
+
+                    }
+                    //aby uniknąć enumeracji/brute force
+                    return Ok("Password has been reset");
+                }
+                return BadRequest(ModelState);
+            }
+            catch(Exception ex)
+            {
+                return StatusCode(500, ex);
+            }
+        }
+        
         private async Task SendConfirmationEmail(string? email, ApplicationUser? user){
             var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
 
@@ -143,6 +198,21 @@ namespace Identity.API.Controllers
                 , protocol: HttpContext.Request.Scheme);
 
             await _emailSender.SendConfirmationLinkAsync(user, email, confirmationLink);
+            
+        }
+
+
+        private async Task SendForgotPasswordEmail(string? email, ApplicationUser? user){
+            var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+
+            //TODO:
+            var angularAppBaseUrl = "";
+
+            // Construct the URL to the Angular reset password page
+            var passwordResetLink = $"{angularAppBaseUrl}/reset-password?email={Uri.EscapeDataString(email)}&token={Uri.EscapeDataString(token)}";  
+
+            await _emailSender.SendPasswordResetLinkAsync(user, email, passwordResetLink);
+
         }
     }
 }
