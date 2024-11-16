@@ -1,10 +1,12 @@
 using Identity.API.Data;
 using Identity.API.Interfaces;
 using Identity.API.Models;
+using Identity.API.Options;
 using Identity.API.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
+using SendGrid.Helpers.Mail;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +25,11 @@ builder.AddSqlServerDbContext<ApplicationDbContext>("sqldata");
 
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
         .AddEntityFrameworkStores<ApplicationDbContext>();
+
+builder.Services.Configure<EmailSettings>(options => 
+    builder.Configuration.GetSection("EmailSettings").Bind(options)
+    );
+
 
 builder.Services.AddAuthentication(options =>
 {

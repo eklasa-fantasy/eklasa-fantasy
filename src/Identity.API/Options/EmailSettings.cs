@@ -2,8 +2,8 @@ namespace Identity.API.Options
 {
     public class EmailSettings
     {
-        string ApiKey {get; set;}
-        string SenderEmail {get; set;}
-        string SenderName {get; set;}
+        public string ApiKey {get; set;}
+        public string SenderEmail {get; set;}
+        public string SenderName {get; set;}
     }
 }
