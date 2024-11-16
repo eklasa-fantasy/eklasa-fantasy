@@ -6,10 +6,10 @@ namespace Fixtures.API.Dtos
     public class APIFixtureDto
     {
         [JsonPropertyName("match_id")]
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         [JsonPropertyName("match_time")]
-        public DateTime Time { get; set; }
+        public string Time { get; set; }
 
         [JsonPropertyName("match_hometeam_name")]
         public string HomeTeamName {get; set; }
@@ -18,16 +18,16 @@ namespace Fixtures.API.Dtos
         public string AwayTeamName {get; set; }
 
         [JsonPropertyName("match_hometeam_id")]
-        public int HomeTeamId {get; set;}
+        public string HomeTeamId {get; set;}
 
-        [JsonPropertyName("match_hometeam_id")]
-        public int AwayTeamId {get; set;}
+        [JsonPropertyName("match_awayteam_id")]
+        public string AwayTeamId {get; set;}
 
         [JsonPropertyName("match_date")]
-        public DateTime Date {get; set;}
+        public string Date {get; set;}
 
         [JsonPropertyName("match_round")]
-        public int Round {get; set;}
+        public string Round {get; set;}
 
         [JsonPropertyName("team_home_badge")]
         public string HomeTeamBadge {get; set;}
