@@ -12,24 +12,47 @@ namespace Fixtures.API.Services
         private static readonly HttpClient client = new HttpClient();
         string apiKey = Environment.GetEnvironmentVariable("API_KEY");
         
+        
         public async Task<List<APIFixtureDto>> GetFixturesAsync(string dateFrom, string dateTo)
         {
             
             try
             {
-                List<APIFixtureDto> list = new List<APIFixtureDto>();
-                HttpResponseMessage response = await client.GetAsync($"https://apiv3.apifootball.com/?action=get_events&from={dateFrom}&to={dateTo}&league_id=153&APIkey=" + apiKey);
+                //List<APIFixtureDto> list = new List<APIFixtureDto>();
+                HttpResponseMessage response = await client.GetAsync($"https://apiv3.apifootball.com/?action=get_events&from={dateFrom}&to={dateTo}&league_id=153&APIkey={apiKey}");
                 response.EnsureSuccessStatusCode(); // Rzuca wyjątek, jeśli kod odpowiedzi jest błędny
                 string responseBody = await response.Content.ReadAsStringAsync();
-                return list;
+
+                return await DeserializeFixturesAsync(responseBody);
+                
             }
-            catch (Exception ex) {
+            catch (HttpRequestException ex) {
+                Console.WriteLine($"HTTP error: {ex.Message}");
+                return null;
+             }
+             catch(Exception ex){
+                Console.WriteLine($"Error: {ex.Message}");
                 return null;
              }
 
 
 
         }
+
+        public async Task<List<APIFixtureDto>> DeserializeFixturesAsync(string response){ //Prawdopodobnie nie potrzeba tu metody asynchronicznej
+            var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+
+            try{
+            var matches = JsonSerializer.Deserialize<List<APIFixtureDto>>(response, options);
+            return matches;
+            }
+                catch(JsonException ex){
+                    Console.WriteLine($"Json Error: {ex.Message}");
+                    return null;
+            }
+
+        }
+
     }
 
 
