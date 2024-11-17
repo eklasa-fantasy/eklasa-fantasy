@@ -8,5 +8,6 @@ namespace Fixtures.API.Interfaces
     {
         Task<List<APIFixtureDto>> GetFixturesAsync(string dateFrom, string dateTo);
         //Task<List<APIFixtureDto>> DeserializeFixturesAsync(string response);
+        
     }
 }
