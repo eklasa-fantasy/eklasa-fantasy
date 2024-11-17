@@ -14,6 +14,7 @@ builder.AddServiceDefaults();
 
 // Add services to the container.
 
+
 builder.Services.AddControllers();
 builder.Services.AddControllers().AddNewtonsoftJson();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -54,8 +55,9 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
+builder.Services.AddSingleton<IEmailService, EmailService>();
 builder.Services.AddScoped<ITokenService, TokenService>();
-builder.Services.AddScoped<IEmailService, EmailService>();
+
 
 var app = builder.Build();
 

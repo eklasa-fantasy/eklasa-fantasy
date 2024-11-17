@@ -1,5 +1,5 @@
-using System.Text.RegularExpressions;
 using Identity.API.Interfaces;
+using System.Text.RegularExpressions;
 using Identity.API.Options;
 using Microsoft.Extensions.Options;
 using SendGrid;
