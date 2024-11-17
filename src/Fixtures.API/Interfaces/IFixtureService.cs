@@ -8,6 +8,6 @@ namespace Fixtures.API.Interfaces
     {
         Task<List<Fixture>> GetFixturesAll();
         Task<List<Fixture>> GetFixturesTeam(int teamId);
-        Task<List<Fixture>> GetFixturesDate(string dateFrom, string dateTo);
+        Task<List<Fixture>> GetFixturesDate(DateTime dateFrom, DateTime dateTo);
     }
 }

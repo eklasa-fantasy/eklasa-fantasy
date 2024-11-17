@@ -20,7 +20,7 @@ namespace Fixtures.API.Controllers
             _footballApiService = footballApiService;
         }
 
-        [HttpGet("all")]
+        [HttpGet("footballapi")] // request powinien być wykonywany co określony czas, poniższa metoda zostaje w celu debugowania
 
         public async Task<IActionResult> GetFixtures(){
             try{
