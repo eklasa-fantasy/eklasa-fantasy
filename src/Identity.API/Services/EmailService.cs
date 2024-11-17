@@ -19,6 +19,10 @@ namespace Identity.API.Services
 
         public async Task SendEmailAsync(string email, string subject, string htmlMessage)
         {
+            
+            if (string.IsNullOrWhiteSpace(htmlMessage))
+                throw new ArgumentNullException(nameof(htmlMessage), "Email message content cannot be null or empty.");
+
             string? fromEmail = _options.Value.SenderEmail;
             string? fromName = _options.Value.SenderName;
             string? apiKey = Environment.GetEnvironmentVariable("SG_API_KEY");
