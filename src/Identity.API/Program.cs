@@ -25,7 +25,8 @@ builder.AddSqlServerDbContext<ApplicationDbContext>("sqldata");
 //builder.AddNpgsqlDbContext<ApplicationDbContext>("identitydb");
 
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
-        .AddEntityFrameworkStores<ApplicationDbContext>();
+        .AddEntityFrameworkStores<ApplicationDbContext>()
+        .AddDefaultTokenProviders();
 
 builder.Services.Configure<EmailSettings>(options => 
     builder.Configuration.GetSection("EmailSettings").Bind(options)
