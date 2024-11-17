@@ -14,10 +14,12 @@ namespace Fixtures.API.Controllers
 
     public class FixturesController : ControllerBase{
         private readonly IFootballApiService _footballApiService;
+        private readonly IFixtureService _fixtureService;
 
-        public FixturesController(IFootballApiService footballApiService)
+        public FixturesController(IFootballApiService footballApiService, IFixtureService fixtureService)
         {
             _footballApiService = footballApiService;
+            _fixtureService = fixtureService;
         }
 
         [HttpGet("footballapi")] // request powinien być wykonywany co określony czas, poniższa metoda zostaje w celu debugowania
@@ -39,6 +41,72 @@ namespace Fixtures.API.Controllers
             {
                 return StatusCode(500, $"An error occurred: {ex.Message}");
             }
+        }
+
+        [HttpGet("all")]
+
+        public async Task<IActionResult> GetAll(){
+            try{
+            var matches = await _fixtureService.GetFixturesAll();
+
+            if (matches == null || !matches.Any())
+                {
+                    return NotFound("No fixtures found.");
+                }
+
+            return Ok(matches);
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occurred: {ex.Message}");
+            }
+
+
+        }
+
+        [HttpGet("date")]
+
+        public async Task<IActionResult> GetDate(DateTime dateFrom, DateTime dateTo){
+            try{
+            var matches = await _fixtureService.GetFixturesDate(dateFrom, dateTo);
+
+            if (matches == null || !matches.Any())
+                {
+                    return NotFound("No fixtures found.");
+                }
+
+            return Ok(matches);
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occurred: {ex.Message}");
+            }
+
+
+        }
+
+         [HttpGet("team")]
+
+        public async Task<IActionResult> GetTeam(int teamId){
+            try{
+            var matches = await _fixtureService.GetFixturesTeam(teamId);
+
+            if (matches == null || !matches.Any())
+                {
+                    return NotFound("No fixtures found.");
+                }
+
+            return Ok(matches);
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occurred: {ex.Message}");
+            }
+
+
         }
 
         
