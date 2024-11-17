@@ -15,20 +15,17 @@ namespace Identity.API.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ITokenService _tokenService;
         private readonly SignInManager<ApplicationUser> _signInManager;
-        //private readonly IEmailSender<ApplicationUser> _emailSender;
         private readonly IEmailService _emailService;
         public AccountController(
             UserManager<ApplicationUser> userManager,
             ITokenService tokenService,
             SignInManager<ApplicationUser> signInManager,
-            //IEmailSender<ApplicationUser> emailSender,
             IEmailService emailService
             )
         {
             _userManager = userManager;
             _tokenService = tokenService;
             _signInManager = signInManager;
-            //_emailSender = emailSender;
             _emailService = emailService;
         }
 
@@ -208,25 +205,18 @@ namespace Identity.API.Controllers
             var confirmationLink = Url.Action("ConfirmEmail", "Account", new {UserId = user.Id, Token = Uri.EscapeDataString(token)}
                 , protocol: HttpContext.Request.Scheme);
 
-                
-
-            //await _emailSender.SendConfirmationLinkAsync(user, email, confirmationLink);
             await _emailService.SendEmailAsync(user.Email, "Confirmation link", confirmationLink);
-            
         }
 
 
         private async Task SendForgotPasswordEmail(string? email, ApplicationUser? user){
             var token = await _userManager.GeneratePasswordResetTokenAsync(user);
 
-            //TODO:
+            //TODO: dodac link do strony z resetem hasła
             var angularAppBaseUrl = "";
 
             // Construct the URL to the Angular reset password page
             var passwordResetLink = $"{angularAppBaseUrl}/reset-password?email={Uri.EscapeDataString(email)}&token={Uri.EscapeDataString(token)}";  
-
-            //await _emailSender.SendPasswordResetLinkAsync(user, email, passwordResetLink);
-
         }
     }
 }
