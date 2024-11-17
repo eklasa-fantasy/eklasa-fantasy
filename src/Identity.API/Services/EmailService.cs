@@ -21,7 +21,7 @@ namespace Identity.API.Services
         {
             string? fromEmail = _options.Value.SenderEmail;
             string? fromName = _options.Value.SenderName;
-            string? apiKey = _options.Value.ApiKey;
+            string? apiKey = Environment.GetEnvironmentVariable("SG_API_KEY");
             var sendGridClient = new SendGridClient(apiKey);
             var from = new EmailAddress(fromEmail, fromName);
             var to = new EmailAddress(email);
