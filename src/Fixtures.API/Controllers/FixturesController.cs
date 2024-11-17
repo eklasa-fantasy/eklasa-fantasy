@@ -89,9 +89,9 @@ namespace Fixtures.API.Controllers
 
          [HttpGet("team")]
 
-        public async Task<IActionResult> GetTeam(int teamId){
+        public async Task<IActionResult> GetTeam([FromBody] FixturesTeamDto fixturesTeamDto){
             try{
-            var matches = await _fixtureService.GetFixturesTeam(teamId);
+            var matches = await _fixtureService.GetFixturesTeam(fixturesTeamDto.teamId);
 
             if (matches == null || !matches.Any())
                 {
