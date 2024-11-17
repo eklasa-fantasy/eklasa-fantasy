@@ -15,15 +15,21 @@ namespace Identity.API.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ITokenService _tokenService;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        //private readonly IEmailSender<ApplicationUser> _emailSender;
+        private readonly IEmailService _emailService;
         public AccountController(
             UserManager<ApplicationUser> userManager,
             ITokenService tokenService,
-            SignInManager<ApplicationUser> signInManager
+            SignInManager<ApplicationUser> signInManager,
+            //IEmailSender<ApplicationUser> emailSender,
+            IEmailService emailService
             )
         {
             _userManager = userManager;
             _tokenService = tokenService;
             _signInManager = signInManager;
+            //_emailSender = emailSender;
+            _emailService = emailService;
         }
 
         [HttpPost("login")]
@@ -165,6 +171,17 @@ namespace Identity.API.Controllers
                 return StatusCode(500, ex);
             }
         }
+        
+        private async Task SendConfirmationEmail(string? email, ApplicationUser? user){
+            var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+
+            var confirmationLink = Url.Action("ConfirmEmail", "Account", new {UserId = user.Id, Token = token}
+                , protocol: HttpContext.Request.Scheme);
+
+            //await _emailSender.SendConfirmationLinkAsync(user, email, confirmationLink);
+            await _emailService.SendEmailAsync(user.Email, "Confirmation link", confirmationLink);
+            
+        }
 
 
         private async Task SendForgotPasswordEmail(string? email, ApplicationUser? user){
@@ -176,7 +193,7 @@ namespace Identity.API.Controllers
             // Construct the URL to the Angular reset password page
             var passwordResetLink = $"{angularAppBaseUrl}/reset-password?email={Uri.EscapeDataString(email)}&token={Uri.EscapeDataString(token)}";  
 
-            await _emailSender.SendPasswordResetLinkAsync(user, email, passwordResetLink);
+            //await _emailSender.SendPasswordResetLinkAsync(user, email, passwordResetLink);
 
         }
     }
