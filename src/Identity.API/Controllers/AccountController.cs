@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OpenTelemetry.Trace;
+using Microsoft.EntityFrameworkCore;
+using OpenTelemetry.Trace;
 
 namespace Identity.API.Controllers
 {
@@ -86,6 +88,8 @@ namespace Identity.API.Controllers
 
                 if (createdUser.Succeeded)
                 {
+                    await SendConfirmationEmail(registerDto.EmailAddress, appUser);
+
                     await SendConfirmationEmail(registerDto.EmailAddress, appUser);
 
                     var roleResult = await _userManager.AddToRoleAsync(appUser, "User");
