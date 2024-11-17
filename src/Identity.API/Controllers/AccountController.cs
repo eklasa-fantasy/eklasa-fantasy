@@ -4,9 +4,6 @@ using Identity.API.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using OpenTelemetry.Trace;
-using Microsoft.EntityFrameworkCore;
-using OpenTelemetry.Trace;
 
 namespace Identity.API.Controllers
 {
@@ -88,9 +85,7 @@ namespace Identity.API.Controllers
 
                 if (createdUser.Succeeded)
                 {
-                    await SendConfirmationEmail(registerDto.EmailAddress, appUser);
-
-                    await SendConfirmationEmail(registerDto.EmailAddress, appUser);
+                    await SendConfirmationEmail(appUser);
 
                     var roleResult = await _userManager.AddToRoleAsync(appUser, "User");
                     if (roleResult.Succeeded)
@@ -175,12 +170,39 @@ namespace Identity.API.Controllers
                 return StatusCode(500, ex);
             }
         }
+
+        [HttpGet("confirmEmail")]
+        public async Task<IActionResult> ConfirmEmail([FromBody] ConfirmEmailDto confirmEmailDto){
+
+            try{
+                if(confirmEmailDto.UserId == null || confirmEmailDto.Token == null){
+                    return BadRequest("The link is invalid or expired");
+                }
+
+                var user = await _userManager.FindByIdAsync(confirmEmailDto.UserId);
+                if(user == null){
+                    return NotFound("User not found");
+                }
+
+                var result = await _userManager.ConfirmEmailAsync(user, confirmEmailDto.Token);
+                if(result.Succeeded){
+                    return Ok("Email confirmed");
+                }
+
+                return StatusCode(500, result.Errors);
+
+            }catch (Exception ex){
+                return StatusCode(500, ex);
+            }
+        }
         
-        private async Task SendConfirmationEmail(string? email, ApplicationUser? user){
+        private async Task SendConfirmationEmail(ApplicationUser user){
             var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
 
             var confirmationLink = Url.Action("ConfirmEmail", "Account", new {UserId = user.Id, Token = token}
                 , protocol: HttpContext.Request.Scheme);
+
+                
 
             //await _emailSender.SendConfirmationLinkAsync(user, email, confirmationLink);
             await _emailService.SendEmailAsync(user.Email, "Confirmation link", confirmationLink);
