@@ -65,11 +65,11 @@ namespace Fixtures.API.Controllers
 
         }
 
-        [HttpGet("date")]
+        [HttpGet("fromToDate")]
 
-        public async Task<IActionResult> GetDate(DateTime dateFrom, DateTime dateTo){
+        public async Task<IActionResult> GetFromToDate([FromBody] FixturesFromToDateDto fixturesFromToDateDto){
             try{
-            var matches = await _fixtureService.GetFixturesDate(dateFrom, dateTo);
+            var matches = await _fixtureService.GetFixturesDate(fixturesFromToDateDto.DateFrom, fixturesFromToDateDto.DateTo);
 
             if (matches == null || !matches.Any())
                 {
