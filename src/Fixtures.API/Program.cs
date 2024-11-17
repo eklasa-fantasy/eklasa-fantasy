@@ -13,7 +13,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddScoped<IFootballApiService, FootballApiService>(); //check
+builder.Services.AddScoped<IFootballApiService, FootballApiService>(); 
+builder.Services.AddScoped<IFixtureService, FixtureService>();
 
 var app = builder.Build();
 
