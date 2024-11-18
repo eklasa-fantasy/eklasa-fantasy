@@ -14,14 +14,10 @@ var identityApi = builder.AddProject<Projects.Identity_API>("identity-api", laun
     .WithReference(sql);
 ;
 
-var fixturesApi = builder.AddProject<Projects.Fixtures_API>("fixtures-api", launchProfileName)
-;
-
 builder.AddProject<Projects.Identity_MigrationService>("identity-migrations")
     .WithReference(sql);
 
 var identityEndpoint = identityApi.GetEndpoint(launchProfileName);
-
 
 
 // Apps
