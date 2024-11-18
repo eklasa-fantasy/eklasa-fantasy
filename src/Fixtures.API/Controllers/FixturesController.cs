@@ -14,13 +14,15 @@ namespace Fixtures.API.Controllers
 
     public class FixturesController : ControllerBase{
         private readonly IFootballApiService _footballApiService;
+        private readonly IFixtureService _fixtureService;
 
-        public FixturesController(IFootballApiService footballApiService)
+        public FixturesController(IFootballApiService footballApiService, IFixtureService fixtureService)
         {
             _footballApiService = footballApiService;
+            _fixtureService = fixtureService;
         }
 
-        [HttpGet("all")]
+        [HttpGet("footballapi")] // request powinien być wykonywany co określony czas, poniższa metoda zostaje w celu debugowania
 
         public async Task<IActionResult> GetFixtures(){
             try{
@@ -39,6 +41,72 @@ namespace Fixtures.API.Controllers
             {
                 return StatusCode(500, $"An error occurred: {ex.Message}");
             }
+        }
+
+        [HttpGet("all")]
+
+        public async Task<IActionResult> GetAll(){
+            try{
+            var matches = await _fixtureService.GetFixturesAll();
+
+            if (matches == null || !matches.Any())
+                {
+                    return NotFound("No fixtures found.");
+                }
+
+            return Ok(matches);
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occurred: {ex.Message}");
+            }
+
+
+        }
+
+        [HttpGet("fromToDate")]
+
+        public async Task<IActionResult> GetFromToDate([FromBody] FixturesFromToDateDto fixturesFromToDateDto){
+            try{
+            var matches = await _fixtureService.GetFixturesDate(fixturesFromToDateDto.DateFrom, fixturesFromToDateDto.DateTo);
+
+            if (matches == null || !matches.Any())
+                {
+                    return NotFound("No fixtures found.");
+                }
+
+            return Ok(matches);
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occurred: {ex.Message}");
+            }
+
+
+        }
+
+         [HttpGet("team")]
+
+        public async Task<IActionResult> GetTeam([FromBody] FixturesTeamDto fixturesTeamDto){
+            try{
+            var matches = await _fixtureService.GetFixturesTeam(fixturesTeamDto.teamId);
+
+            if (matches == null || !matches.Any())
+                {
+                    return NotFound("No fixtures found.");
+                }
+
+            return Ok(matches);
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occurred: {ex.Message}");
+            }
+
+
         }
 
         
