@@ -18,7 +18,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Identity.API\Identity.API.csproj" />
-    <ProjectReference Include="..\Fixtures.API\Fixtures.API.csproj" />
     <ProjectReference Include="..\Identity.MigrationService\Identity.MigrationService.csproj" />
   </ItemGroup>
 
