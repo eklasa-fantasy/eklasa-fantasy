@@ -17,6 +17,9 @@ var identityApi = builder.AddProject<Projects.Identity_API>("identity-api", laun
 var fixturesApi = builder.AddProject<Projects.Fixtures_API>("fixtures-api", launchProfileName)
 ;
 
+var resultsApi = builder.AddProject<Projects.Results_API>("results-api")
+;
+
 builder.AddProject<Projects.Identity_MigrationService>("identity-migrations")
     .WithReference(sql);
 
@@ -32,6 +35,9 @@ var webApp = builder
     //.WithHttpEndpoint(env: "PORT")
     ;
 
+
+
+//identityApi.WithEnvironment("WebAppClient", webApp.GetEndpoint(launchProfileName));
 
 
 //identityApi.WithEnvironment("WebAppClient", webApp.GetEndpoint(launchProfileName));
