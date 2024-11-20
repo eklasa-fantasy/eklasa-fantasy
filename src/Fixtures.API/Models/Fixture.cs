@@ -24,6 +24,8 @@ namespace Fixtures.API.Models{
         public string HomeTeamBadge {get; set;}
 
         public string AwayTeamBadge {get; set;}
+
+        //
         
     }
 }
