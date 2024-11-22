@@ -1,6 +1,7 @@
 
 
 
+using Fixtures.API.Data;
 using Fixtures.API.Interfaces;
 using Fixtures.API.Models;
 
@@ -8,6 +9,12 @@ namespace Fixtures.API.Services
 {
     public class FixtureService : IFixtureService
     {
+        private readonly FixturesDbContext _context;
+
+        public FixtureService(FixturesDbContext context)
+        {
+            _context = context;
+        }
         public Task<List<Fixture>> GetFixturesAll()
         {
              // w sumie nie potrzeba nam GetFixturesAll i GetFixturesDate, przecież wystarczy podać inne daty w FixturesController, ale zostawiam
