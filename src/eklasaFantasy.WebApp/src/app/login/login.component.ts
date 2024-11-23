@@ -17,7 +17,6 @@ export class LoginComponent {
     private router: Router // Import routera do przekierowania
   ) {
     this.loginForm = this.fb.group({
-      username: ['', Validators.required],
       emailAddress: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
     });
@@ -27,7 +26,7 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       const loginData = this.loginForm.value;
 
-      this.http.post('https://localhost:7249/api/account/register', loginData)
+      this.http.post('https://localhost:7249/api/account/login', loginData)
         .subscribe(
           response => {
             console.log('Sukces logowania:', response);
