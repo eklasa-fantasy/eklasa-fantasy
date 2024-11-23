@@ -1,0 +1,29 @@
+<div class="navbar">
+  <div class="logo">
+    <img src="logo" alt="Eklasa Fantasy" />
+  </div>
+  <div class="nav-buttons">
+    <button routerLink="/not-logged-in" routerLinkActive="active">Wyniki</button>
+    <button routerLink="/not-logged-in" routerLinkActive="active">Tabela</button>
+    <button routerLink="/not-logged-in" routerLinkActive="active">Terminarz</button>
+    <button routerLink="/not-logged-in" routerLinkActive="active">Statystyki</button>
+
+    <button (click)="toggleAccount()">Konto</button>
+  </div>
+</div>
+
+<div class="content">
+  <ng-container *ngIf="isLoginScreen; else mainContent">
+    <app-login (loginSuccess)="loginSuccess()"></app-login>
+  </ng-container>
+
+  <ng-template #mainContent>
+    <ng-container *ngIf="isLoggedIn; else notLoggedInTemplate">
+      <app-logged-in></app-logged-in>
+    </ng-container>
+  
+    <ng-template #notLoggedInTemplate>
+      <app-not-logged-in></app-not-logged-in>
+    </ng-template>
+  </ng-template>
+</div>
