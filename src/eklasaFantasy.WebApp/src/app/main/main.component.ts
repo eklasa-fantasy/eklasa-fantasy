@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 export class MainComponent {
   isLoggedIn = false;  
   isLoginScreen = false;  
+  showLogin: boolean = true;
 
   constructor(private router: Router) {}
 
@@ -24,5 +25,14 @@ export class MainComponent {
   loginSuccess() {
     this.isLoggedIn = true;
     this.isLoginScreen = false;
+  }
+
+  switchToRegister() {
+    this.showLogin = false;
+  }
+
+  // Metoda przełączająca na formularz logowania
+  switchToLogin() {
+    this.showLogin = true;
   }
 }

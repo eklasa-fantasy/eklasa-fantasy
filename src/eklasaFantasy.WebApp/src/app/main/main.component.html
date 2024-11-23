@@ -3,6 +3,9 @@
     <img src="logo" alt="Eklasa Fantasy" />
   </div>
   <div class="nav-buttons">
+    <button (click)="switchToRegister()">Register</button>
+    <button (click)="switchToLogin()">Login</button>
+
     <button routerLink="/not-logged-in" routerLinkActive="active">Wyniki</button>
     <button routerLink="/not-logged-in" routerLinkActive="active">Tabela</button>
     <button routerLink="/not-logged-in" routerLinkActive="active">Terminarz</button>
@@ -13,17 +16,17 @@
 </div>
 
 <div class="content">
-  <ng-container *ngIf="isLoginScreen; else mainContent">
-    <app-login (loginSuccess)="loginSuccess()"></app-login>
+  <ng-container *ngIf="isLoggedIn; else notLoggedInTemplate">
+    <app-logged-in></app-logged-in>
   </ng-container>
-
-  <ng-template #mainContent>
-    <ng-container *ngIf="isLoggedIn; else notLoggedInTemplate">
-      <app-logged-in></app-logged-in>
-    </ng-container>
   
-    <ng-template #notLoggedInTemplate>
-      <app-not-logged-in></app-not-logged-in>
+  <ng-template #notLoggedInTemplate>
+    <div *ngIf="showLogin; else registerTemplate">
+      <app-login (switchToRegister)="switchToRegister()"></app-login>
+    </div>
+
+    <ng-template #registerTemplate>
+      <app-register (switchToLogin)="switchToLogin()"></app-register>
     </ng-template>
   </ng-template>
 </div>

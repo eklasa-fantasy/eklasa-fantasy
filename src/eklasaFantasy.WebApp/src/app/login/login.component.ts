@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
+  @Output() switchToRegister = new EventEmitter<void>();
   loginForm: FormGroup;
 
   constructor(
@@ -37,5 +38,8 @@ export class LoginComponent {
           }
         );
     }
+  }
+  onSwitchToRegister() {
+    this.switchToRegister.emit();
   }
 }
