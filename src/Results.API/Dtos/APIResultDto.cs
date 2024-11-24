@@ -47,6 +47,9 @@ namespace Results.API.Dtos
         [JsonPropertyName("goalscorer")]
         public List<APIGoalscorerDto> GoalScorers {get; set;}
 
+        [JsonPropertyName("cards")]
+        public List<APICardsDto> Cards {get; set;}
+
 
 
 
