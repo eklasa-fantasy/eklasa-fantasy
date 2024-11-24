@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 namespace Results.API.Dtos
 {
     
-    public class APIFixtureDto
+    public class APIResultDto
     {
         [JsonPropertyName("match_id")]
         public string Id { get; set; }
@@ -43,6 +43,9 @@ namespace Results.API.Dtos
 
         [JsonPropertyName("match_live")]
         public string isMatchLive {get; set;} //Bardzo wazne
+
+        [JsonPropertyName("goalscorer")]
+        public List<APIGoalscorerDto> GoalScorers {get; set;}
 
 
 
