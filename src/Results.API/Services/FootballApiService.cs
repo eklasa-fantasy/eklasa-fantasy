@@ -35,6 +35,8 @@ namespace Results.API.Services
         public async Task<List<APIResultDto>> DeserializeResultsAsync(string response)
         {
 
+            //Console.WriteLine(response);
+
             try
             {
                 var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };

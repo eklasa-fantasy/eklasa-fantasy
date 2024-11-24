@@ -51,7 +51,7 @@ namespace Results.API.Dtos
         public List<APICardsDto>? Cards {get; set;}
 
         [JsonPropertyName("substitutions")]
-        public List<APISubsDto>? Substitutions  {get; set;}
+        public APISubsDto? Substitutions  {get; set;}
 
 
 
