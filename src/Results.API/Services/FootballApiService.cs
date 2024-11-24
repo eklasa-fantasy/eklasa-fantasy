@@ -1,9 +1,10 @@
 using System.Text.Json;
 using Results.API.Dtos;
+using Results.API.Interfaces;
 
 namespace Results.API.Services
 {
-    public class FootballApiService
+    public class FootballApiService : IFootballApiService
     {
         private static readonly HttpClient client = new HttpClient();
         string apiKey = Environment.GetEnvironmentVariable("API_KEY");
