@@ -45,10 +45,13 @@ namespace Results.API.Dtos
         public string isMatchLive {get; set;} //Bardzo wazne
 
         [JsonPropertyName("goalscorer")]
-        public List<APIGoalscorerDto> GoalScorers {get; set;}
+        public List<APIGoalscorerDto>? GoalScorers {get; set;}
 
         [JsonPropertyName("cards")]
-        public List<APICardsDto> Cards {get; set;}
+        public List<APICardsDto>? Cards {get; set;}
+
+        [JsonPropertyName("substitutions")]
+        public List<APISubsDto>? Substitutions  {get; set;}
 
 
 
