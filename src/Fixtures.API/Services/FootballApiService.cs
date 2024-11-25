@@ -1,37 +1,30 @@
-using Fixtures.API.Interfaces;
-using Fixtures.API.Dtos;
+using Microsoft.Extensions.Configuration;
 using System.Net.Http;
 using System.Text.Json;
+using System.Threading.Tasks;
+using Fixtures.API.Interfaces;
+using Fixtures.API.Dtos;
 
 namespace Fixtures.API.Services
 {
     public class FootballApiService : IFootballApiService
     {
         private static readonly HttpClient client = new HttpClient();
-        private readonly string _apiKey;
+        string apiKey = Environment.GetEnvironmentVariable("API_KEY");
 
-        public FootballApiService()
-        {
-            // Pobranie klucza API z ustawień środowiska
-            _apiKey = Environment.GetEnvironmentVariable("API_KEY") ?? throw new Exception("API key not found.");
-        }
 
         public async Task<List<APIFixtureDto>> GetFixturesAsync(string dateFrom, string dateTo)
         {
+
             try
             {
-                // Budowanie adresu żądania
-                string url = $"https://apiv3.apifootball.com/?action=get_events&from={dateFrom}&to={dateTo}&league_id=153&APIkey={_apiKey}";
-
-                // Wysłanie żądania HTTP
-                HttpResponseMessage response = await client.GetAsync(url);
-                response.EnsureSuccessStatusCode(); // Rzuca wyjątek, jeśli odpowiedź HTTP wskazuje na błąd
-
-                // Odczytanie treści odpowiedzi
+                //List<APIFixtureDto> list = new List<APIFixtureDto>();
+                HttpResponseMessage response = await client.GetAsync($"https://apiv3.apifootball.com/?action=get_events&from={dateFrom}&to={dateTo}&league_id=153&APIkey={apiKey}");
+                response.EnsureSuccessStatusCode(); // Rzuca wyjątek, jeśli kod odpowiedzi jest błędny
                 string responseBody = await response.Content.ReadAsStringAsync();
 
-                // Deserializacja odpowiedzi do listy APIFixtureDto
                 return await DeserializeFixturesAsync(responseBody);
+
             }
             catch (HttpRequestException ex)
             {
@@ -43,15 +36,17 @@ namespace Fixtures.API.Services
                 Console.WriteLine($"Error: {ex.Message}");
                 return null;
             }
+
+
+
         }
 
         public async Task<List<APIFixtureDto>> DeserializeFixturesAsync(string response)
-        {
+        { //Prawdopodobnie nie potrzeba tu metody asynchronicznej
             var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
 
             try
             {
-                // Deserializacja JSON do listy APIFixtureDto
                 var matches = JsonSerializer.Deserialize<List<APIFixtureDto>>(response, options);
                 return matches;
             }
@@ -60,6 +55,10 @@ namespace Fixtures.API.Services
                 Console.WriteLine($"Json Error: {ex.Message}");
                 return null;
             }
+
         }
+
     }
+
+
 }

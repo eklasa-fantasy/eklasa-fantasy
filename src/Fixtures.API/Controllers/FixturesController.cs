@@ -1,11 +1,17 @@
+
 using Fixtures.API.Dtos;
 using Fixtures.API.Interfaces;
+using Fixtures.API.Services;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
+using RouteAttribute = Microsoft.AspNetCore.Mvc.RouteAttribute;
+
 
 namespace Fixtures.API.Controllers
 {
     [Route("api/fixtures")]
     [ApiController]
+
     public class FixturesController : ControllerBase
     {
         private readonly IFootballApiService _footballApiService;
@@ -17,17 +23,19 @@ namespace Fixtures.API.Controllers
             _fixtureService = fixtureService;
         }
 
-        // Debugowanie: Pobieranie danych z API bez zapisywania
-        [HttpGet("fetch-from-api")]
-        public async Task<IActionResult> FetchFromApi(string dateFrom, string dateTo)
+        [HttpGet("footballapi")] // request powinien być wykonywany co określony czas, poniższa metoda zostaje w celu debugowania
+
+        public async Task<IActionResult> GetFixtures()
         {
             try
             {
-                var matches = await _footballApiService.GetFixturesAsync(dateFrom, dateTo);
+                //TODO Metoda będzie używana do pobrania meczów z bazy danych za pomocą FixturesService
+                string dateToday = DateTime.Now.Year.ToString() + "-" + DateTime.Now.Month.ToString() + "-" + DateTime.Now.Day.ToString();
+                var matches = await _footballApiService.GetFixturesAsync(dateToday, "2025-06-01");
 
                 if (matches == null || !matches.Any())
                 {
-                    return NotFound("No fixtures found in the API.");
+                    return NotFound("No fixtures found.");
                 }
 
                 return Ok(matches);
@@ -38,33 +46,8 @@ namespace Fixtures.API.Controllers
             }
         }
 
-        // Pobieranie danych z API i zapisywanie ich w bazie danych
-        [HttpPost("fetch-and-save")]
-        public async Task<IActionResult> FetchAndSave(string dateFrom, string dateTo)
-        {
-            try
-            {
-                // Pobieranie danych z API
-                var apiFixtures = await _footballApiService.GetFixturesAsync(dateFrom, dateTo);
-
-                if (apiFixtures == null || !apiFixtures.Any())
-                {
-                    return NotFound("No fixtures found in the API.");
-                }
-
-                // Zapisywanie danych do bazy
-                await _fixtureService.SaveApiFixturesToDatabase(apiFixtures);
-
-                return Ok("Fixtures fetched from API and saved to the database.");
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"An error occurred: {ex.Message}");
-            }
-        }
-
-        // Pobieranie wszystkich meczów z bazy danych
         [HttpGet("all")]
+
         public async Task<IActionResult> GetAll()
         {
             try
@@ -73,19 +56,22 @@ namespace Fixtures.API.Controllers
 
                 if (matches == null || !matches.Any())
                 {
-                    return NotFound("No fixtures found in the database.");
+                    return NotFound("No fixtures found.");
                 }
 
                 return Ok(matches);
+
             }
             catch (Exception ex)
             {
                 return StatusCode(500, $"An error occurred: {ex.Message}");
             }
+
+
         }
 
-        // Pobieranie meczów na podstawie zakresu dat
-        [HttpPost("from-to-date")]
+        [HttpGet("fromToDate")]
+
         public async Task<IActionResult> GetFromToDate([FromBody] FixturesFromToDateDto fixturesFromToDateDto)
         {
             try
@@ -94,19 +80,22 @@ namespace Fixtures.API.Controllers
 
                 if (matches == null || !matches.Any())
                 {
-                    return NotFound("No fixtures found in the given date range.");
+                    return NotFound("No fixtures found.");
                 }
 
                 return Ok(matches);
+
             }
             catch (Exception ex)
             {
                 return StatusCode(500, $"An error occurred: {ex.Message}");
             }
+
+
         }
 
-        // Pobieranie meczów związanych z konkretną drużyną
-        [HttpPost("team")]
+        [HttpGet("team")]
+
         public async Task<IActionResult> GetTeam([FromBody] FixturesTeamDto fixturesTeamDto)
         {
             try
@@ -115,15 +104,22 @@ namespace Fixtures.API.Controllers
 
                 if (matches == null || !matches.Any())
                 {
-                    return NotFound("No fixtures found for the given team.");
+                    return NotFound("No fixtures found.");
                 }
 
                 return Ok(matches);
+
             }
             catch (Exception ex)
             {
                 return StatusCode(500, $"An error occurred: {ex.Message}");
             }
+
+
         }
+
+
+
     }
+
 }
