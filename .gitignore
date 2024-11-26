@@ -6,6 +6,8 @@
 # dotenv files
 .env
 
+src/Identity.API/env
+
 # User-specific files
 *.rsuser
 *.suo
