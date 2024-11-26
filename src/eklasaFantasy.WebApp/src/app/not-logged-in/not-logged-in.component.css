@@ -1,13 +1,13 @@
-.not-logged-in {
+/*.not-logged-in {
     display: grid;
-    grid-template-columns: 1fr 2fr 1fr; /* Układ kolumnowy pozostaje */
-    gap: 3%; /* Odstęp między sekcjami w procentach */
+    grid-template-columns: 1fr 2fr 1fr; 
+    gap: 3%; 
   
     .section {
       background-color: #f4f4f4;
-      padding: 2%; /* Padding sekcji ustawiony procentowo */
-      border-radius: 5%; /* Zaokrąglenie rogów w procentach */
-      box-shadow: 0 0.2% 0.5% rgba(0, 0, 0, 0.1); /* Cień z wartościami procentowymi */
+      padding: 2%; 
+      border-radius: 5%; 
+      box-shadow: 0 0.2% 0.5% rgba(0, 0, 0, 0.1); 
     }
   
     .wyniki {
@@ -22,4 +22,4 @@
       grid-column: 3;
     }
   }
-  
+  */

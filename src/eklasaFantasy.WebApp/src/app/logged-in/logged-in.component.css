@@ -1,24 +1,24 @@
-.not-logged-in-container {
+/*.not-logged-in-container {
     display: flex;
-    justify-content: center; /* Wyśrodkowanie w poziomie */
-    align-items: flex-start; /* Wyrównanie do góry w pionie */
-    margin-top: 0.5%; /* Odstęp od góry, np. 5% wysokości ekranu */
-    width: 100%; /* Kontener zajmuje całą szerokość */
+    justify-content: center;
+    align-items: flex-start; 
+    margin-top: 0.5%; 
+    width: 100%; 
   }
   
   .not-logged-button {
     background-color: #555;
     color: white;
     border: none;
-    padding: 0.5% 1%; /* Padding ustawiony procentowo: góra/dół 1.5%, lewo/prawo 3% */
-    margin: 0 1%; /* Odstęp między przyciskami w poziomie, np. 1% szerokości */
-    font-size: 1.2rem; /* Rozmiar czcionki z użyciem jednostek względnych */
+    padding: 0.5% 1%;
+    margin: 0 1%;
+    font-size: 1.2rem;
     cursor: pointer;
     transition: background-color 0.3s;
-    width: auto; /* Automatyczna szerokość, dostosowuje się do zawartości */
+    width: auto;
   }
   
   .not-logged-button:hover {
     background-color: #777;
   }
-  
+  */

@@ -1,4 +1,3 @@
-// register.component.ts
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
@@ -16,7 +15,13 @@ export class RegisterComponent {
     this.registerForm = this.fb.group({
       username: ['', Validators.required],
       emailAddress: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required]
+      password: ['', [
+        Validators.required,
+        Validators.minLength(8),
+        Validators.pattern('(?=.*[a-z])'),
+        Validators.pattern('(?=.*[A-Z])'),
+        Validators.pattern('(?=.*[!@#$%^&*])'),
+      ]]
     });
   }
 
@@ -37,5 +42,16 @@ export class RegisterComponent {
 
   goToLogin() {
     this.switchView.emit('register');
+  }
+
+  get passwordErrors() {
+    const passwordControl = this.registerForm.get('password');
+    if (passwordControl?.hasError('minlength')) {
+      return 'Hasło musi mieć co najmniej 8 znaków';
+    }
+    if (passwordControl?.hasError('pattern')) {
+      return 'Password must contain at least one uppercase letter, one lowercase letter, and one special character';
+    }
+    return '';
   }
 }
