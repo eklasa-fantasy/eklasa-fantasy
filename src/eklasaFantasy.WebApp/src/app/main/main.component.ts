@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-main',
@@ -10,8 +11,13 @@ export class MainComponent {
   isLoggedIn = false;  
   isLoginScreen = false;  
   showLogin: boolean = true;
+  currentView: string = 'login'; // Domyślnie widok logowania
 
   constructor(private router: Router) {}
+    
+  switchView(view: string): void {
+     this.currentView = view;
+  }
 
   toggleAccount() {
     if (this.isLoggedIn) {
@@ -27,12 +33,11 @@ export class MainComponent {
     this.isLoginScreen = false;
   }
 
-  switchToRegister() {
-    this.showLogin = false;
+  goToLogin(){
+    this.switchView('login');
   }
-
-  // Metoda przełączająca na formularz logowania
-  switchToLogin() {
-    this.showLogin = true;
+  goToRegister(){
+    this.switchView('register');
   }
+  
 }

@@ -9,11 +9,10 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent {
-  @Output() switchToLogin = new EventEmitter<void>();
+  @Output() switchView= new EventEmitter<string>();
   registerForm: FormGroup;
 
   constructor(private fb: FormBuilder, private http: HttpClient) {
-    // Inicjalizacja formularza rejestracji
     this.registerForm = this.fb.group({
       username: ['', Validators.required],
       emailAddress: ['', [Validators.required, Validators.email]],
@@ -36,7 +35,7 @@ export class RegisterComponent {
     }
   }
 
-  onSwitchToLogin() {
-    this.switchToLogin.emit();
+  goToLogin() {
+    this.switchView.emit('register');
   }
 }

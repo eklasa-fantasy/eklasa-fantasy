@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  @Output() switchToRegister = new EventEmitter<void>();
+  @Output() switchView = new EventEmitter<string>();
   loginForm: FormGroup;
 
   constructor(
@@ -39,7 +39,10 @@ export class LoginComponent {
         );
     }
   }
-  onSwitchToRegister() {
-    this.switchToRegister.emit();
+  goToLogin() {
+    this.switchView.emit('login');
+  }
+  goToForgotPassword(){
+    this.switchView.emit('forgot-password');
   }
 }
