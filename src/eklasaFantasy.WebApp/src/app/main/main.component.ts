@@ -39,5 +39,8 @@ export class MainComponent {
   goToRegister(){
     this.switchView('register');
   }
+  goToMatchList(){
+    this.switchView('match-list');
+  }
   
 }

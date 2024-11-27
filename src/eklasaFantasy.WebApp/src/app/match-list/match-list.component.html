@@ -1,0 +1,19 @@
+<div class="match-list">
+    <div *ngFor="let match of matches" class="match-card">
+      <div class="team team-home">
+        <img [src]="match.team_home_badge" alt="{{ match.match_hometeam_name }} logo" class="team-logo">
+        <span class="team-name">{{ match.match_hometeam_name }}</span>
+      </div>
+      
+      <!-- Środek: data i godzina -->
+      <div class="match-time-container">
+        <div class="match-time">{{ match.match_date }} {{ match.match_time }}</div>
+      </div>
+      
+      <div class="team team-away">
+        <span class="team-name">{{ match.match_awayteam_name }}</span>
+        <img [src]="match.team_away_badge" alt="{{ match.match_awayteam_name }} logo" class="team-logo">
+      </div>
+    </div>
+  </div>
+  

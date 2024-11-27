@@ -8,7 +8,7 @@
 
     <button routerLink="/not-logged-in" routerLinkActive="active">Wyniki</button>
     <button routerLink="/not-logged-in" routerLinkActive="active">Tabela</button>
-    <button routerLink="/not-logged-in" routerLinkActive="active">Terminarz</button>
+    <button (click)="goToMatchList()">Terminarz</button>
     <button routerLink="/not-logged-in" routerLinkActive="active">Statystyki</button>
 
     <button (click)="toggleAccount()">Konto</button>
@@ -35,6 +35,10 @@
       <!-- Widok resetowania hasła -->
       <ng-container *ngSwitchCase="'forgot-password'">
         <app-forgot-password (switchView)="switchView($event)"></app-forgot-password>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="'match-list'">
+        <app-match-list (switchView)="switchView($event)"></app-match-list>
       </ng-container>
 
       <!-- Domyślny widok -->

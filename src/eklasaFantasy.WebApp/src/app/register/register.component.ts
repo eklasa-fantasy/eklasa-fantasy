@@ -18,7 +18,7 @@ export class RegisterComponent {
       password: ['', [
         Validators.required,
         Validators.minLength(8),
-        Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])')
+       // Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])')
       ]]
     });
   }
