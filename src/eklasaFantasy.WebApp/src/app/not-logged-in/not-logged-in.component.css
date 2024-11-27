@@ -1,7 +1,7 @@
 .dashboard-container {
   display: flex;
-  flex-direction: row; /* Ustawia sekcje obok siebie */
-  gap: 20px; /* Dodaje odstęp między sekcjami */
+  flex-direction: row; 
+  gap: 20px; 
   margin: 0 1% 0 1%;
   opacity: 0.8;
 }
@@ -10,19 +10,18 @@
   padding: 15px;
   border: 1px solid #ddd;
   border-radius: 5px;
-  flex: 1; /* Opcjonalnie, aby sekcje zajmowały równą przestrzeń */
+  flex: 1; 
   background-color: #333;
 }
 
 h2 {
-  font-family: 'Arial', sans-serif; /* Możesz zmienić na wybraną czcionkę */
-  color: white; /* Zmienia kolor czcionki na zielony */
+  font-family: 'Arial', sans-serif;
+  color: white; 
   margin-top: 0;
   margin-bottom: 2%;
 }
 
-/* Zmiana czcionki i koloru dla innych tekstów w sekcji */
 .section p {
-  font-family: 'Verdana', sans-serif; /* Przykładowa czcionka dla paragrafów */
-  color: #333; /* Zmiana koloru tekstu na ciemnoszary */
+  font-family: 'Verdana', sans-serif; 
+  color: #333; 
 }

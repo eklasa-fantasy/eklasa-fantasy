@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './register/register.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { MatchListComponent } from './match-list/match-list.component';
+import { ResultsComponent } from './results/results.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { MatchListComponent } from './match-list/match-list.component';
     LoginComponent,
     RegisterComponent,
     ForgotPasswordComponent,
-    MatchListComponent
+    MatchListComponent,
+    ResultsComponent
   ],
   imports: [
     BrowserModule,

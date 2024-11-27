@@ -8,7 +8,7 @@ import { MatchService } from './../match.service';
 })
 export class MatchListComponent implements OnInit {
   @Output() switchView= new EventEmitter<string>();
-  matches: any[] = []; // Tablica na dane z backendu
+  matches: any[] = [];
 
   constructor(private matchService: MatchService) {}
 
@@ -19,7 +19,6 @@ export class MatchListComponent implements OnInit {
   fetchMatches(): void {
     this.matchService.getMatches().subscribe(
       (data) => {
-        // Filtrujemy wartości, aby pominąć ID
         this.matches = data.map(match => ({
           match_time: match.match_time,
           match_hometeam_name: match.match_hometeam_name,

@@ -7,6 +7,7 @@ import { RegisterComponent } from './register/register.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { MatchListComponent } from './match-list/match-list.component';
 import { NotLoggedInComponent } from './not-logged-in/not-logged-in.component';
+import { ResultsComponent } from './results/results.component';
 
 const routes: Routes = [
   { path: '', component: MainComponent }, 
@@ -16,7 +17,8 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent},
   { path: 'match-list', component: MatchListComponent},
-  { path: 'not-logged-in', component: NotLoggedInComponent}
+  { path: 'not-logged-in', component: NotLoggedInComponent},
+  { path: 'results', component: ResultsComponent}
 ];
 
 @NgModule({

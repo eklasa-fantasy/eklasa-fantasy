@@ -1,0 +1,1117 @@
+    {
+        "results": [
+            {
+                "match_time": "18:00",
+                "match_hometeam_name": "Liverpool",
+                "match_awayteam_name": "Arsenal",
+                "match_hometeam_id": "liverpool",
+                "match_awayteam_id": "arsenal",
+                "match_date": "2024-11-27",
+                "match_round": "Round 10",
+                "team_home_badge": "https://www.premierleague.com/clubs/11/Liverpool",
+                "team_away_badge": "https://www.premierleague.com/clubs/1/Arsenal",
+                "match_hometeam_score": "2",
+                "match_awayteam_score": "1",
+                "match_live": "false",
+                "goalscorer": [
+                    {
+                        "time": "12'",
+                        "scorer": "Mohamed Salah",
+                        "team": "Liverpool"
+                    },
+                    {
+                        "time": "58'",
+                        "scorer": "Darwin Núñez",
+                        "team": "Liverpool"
+                    },
+                    {
+                        "time": "75'",
+                        "scorer": "Martin Ødegaard",
+                        "team": "Arsenal"
+                    }
+                ],
+                "cards": [
+                    {
+                        "time": "27'",
+                        "player": "Virgil van Dijk",
+                        "team": "Liverpool",
+                        "card": "yellow"
+                    },
+                    {
+                        "time": "82'",
+                        "player": "Bukayo Saka",
+                        "team": "Arsenal",
+                        "card": "yellow"
+                    }
+                ],
+                "substitutions": {
+                    "home": [
+                        {
+                            "time": "67'",
+                            "player_in": "Cody Gakpo",
+                            "player_out": "Luis Díaz"
+                        }
+                    ],
+                    "away": [
+                        {
+                            "time": "71'",
+                            "player_in": "Leandro Trossard",
+                            "player_out": "Gabriel Jesus"
+                        }
+                    ]
+                }
+            },
+            {
+                "match_time": "21:00",
+                "match_hometeam_name": "Manchester City",
+                "match_awayteam_name": "Chelsea",
+                "match_hometeam_id": "manchester_city",
+                "match_awayteam_id": "chelsea",
+                "match_date": "2024-11-27",
+                "match_round": "Round 10",
+                "team_home_badge": "https://www.premierleague.com/clubs/10/Manchester-City",
+                "team_away_badge": "https://www.premierleague.com/clubs/3/Chelsea",
+                "match_hometeam_score": "4",
+                "match_awayteam_score": "2",
+                "match_live": "false",
+                "goalscorer": [
+                    {
+                        "time": "9'",
+                        "scorer": "Erling Haaland",
+                        "team": "Manchester City"
+                    },
+                    {
+                        "time": "33'",
+                        "scorer": "Jack Grealish",
+                        "team": "Manchester City"
+                    },
+                    {
+                        "time": "49'",
+                        "scorer": "Raheem Sterling",
+                        "team": "Chelsea"
+                    },
+                    {
+                        "time": "63'",
+                        "scorer": "Julian Álvarez",
+                        "team": "Manchester City"
+                    },
+                    {
+                        "time": "79'",
+                        "scorer": "Kai Havertz",
+                        "team": "Chelsea"
+                    },
+                    {
+                        "time": "85'",
+                        "scorer": "Phil Foden",
+                        "team": "Manchester City"
+                    }
+                ],
+                "cards": [
+                    {
+                        "time": "21'",
+                        "player": "Ruben Dias",
+                        "team": "Manchester City",
+                        "card": "yellow"
+                    },
+                    {
+                        "time": "67'",
+                        "player": "Conor Gallagher",
+                        "team": "Chelsea",
+                        "card": "yellow"
+                    }
+                ],
+                "substitutions": {
+                    "home": [
+                        {
+                            "time": "60'",
+                            "player_in": "Bernardo Silva",
+                            "player_out": "Jack Grealish"
+                        }
+                    ],
+                    "away": [
+                        {
+                            "time": "72'",
+                            "player_in": "Mason Mount",
+                            "player_out": "Raheem Sterling"
+                        }
+                    ]
+                }
+            },
+            {
+                "match_time": "16:00",
+                "match_hometeam_name": "Tottenham Hotspur",
+                "match_awayteam_name": "Manchester United",
+                "match_hometeam_id": "tottenham_hotspur",
+                "match_awayteam_id": "manchester_united",
+                "match_date": "2024-11-28",
+                "match_round": "Round 10",
+                "team_home_badge": "https://www.premierleague.com/clubs/10/Tottenham-Hotspur",
+                "team_away_badge": "https://www.premierleague.com/clubs/8/Manchester-United",
+                "match_hometeam_score": "1",
+                "match_awayteam_score": "1",
+                "match_live": "false",
+                "goalscorer": [
+                    {
+                        "time": "18'",
+                        "scorer": "Son Heung-min",
+                        "team": "Tottenham Hotspur"
+                    },
+                    {
+                        "time": "64'",
+                        "scorer": "Bruno Fernandes",
+                        "team": "Manchester United"
+                    }
+                ],
+                "cards": [
+                    {
+                        "time": "35'",
+                        "player": "Cristian Romero",
+                        "team": "Tottenham Hotspur",
+                        "card": "yellow"
+                    },
+                    {
+                        "time": "50'",
+                        "player": "Lisandro Martínez",
+                        "team": "Manchester United",
+                        "card": "yellow"
+                    }
+                ],
+                "substitutions": {
+                    "home": [
+                        {
+                            "time": "75'",
+                            "player_in": "Richarlison",
+                            "player_out": "Dejan Kulusevski"
+                        }
+                    ],
+                    "away": [
+                        {
+                            "time": "80'",
+                            "player_in": "Anthony Martial",
+                            "player_out": "Jadon Sancho"
+                        }
+                    ]
+                }
+            },
+            {
+                "match_time": "18:30",
+                "match_hometeam_name": "Leeds United",
+                "match_awayteam_name": "West Ham United",
+                "match_hometeam_id": "leeds_united",
+                "match_awayteam_id": "west_ham_united",
+                "match_date": "2024-11-28",
+                "match_round": "Round 10",
+                "team_home_badge": "https://www.premierleague.com/clubs/13/Leeds-United",
+                "team_away_badge": "https://www.premierleague.com/clubs/20/West-Ham-United",
+                "match_hometeam_score": "0",
+                "match_awayteam_score": "1",
+                "match_live": "false",
+                "goalscorer": [
+                    {
+                        "time": "67'",
+                        "scorer": "Jarrod Bowen",
+                        "team": "West Ham United"
+                    }
+                ],
+                "cards": [
+                    {
+                        "time": "45'",
+                        "player": "Tyler Adams",
+                        "team": "Leeds United",
+                        "card": "yellow"
+                    },
+                    {
+                        "time": "82'",
+                        "player": "Tomas Soucek",
+                        "team": "West Ham United",
+                        "card": "yellow"
+                    }
+                ],
+                "substitutions": {
+                    "home": [
+                        {
+                            "time": "60'",
+                            "player_in": "Wilfried Gnonto",
+                            "player_out": "Luis Sinisterra"
+                        }
+                    ],
+                    "away": [
+                        {
+                            "time": "74'",
+                            "player_in": "Pablo Fornals",
+                            "player_out": "Said Benrahma"
+                        }
+                    ]
+                }
+            },
+            {
+                "match_time": "20:00",
+                "match_hometeam_name": "Newcastle United",
+                "match_awayteam_name": "Aston Villa",
+                "match_hometeam_id": "newcastle_united",
+                "match_awayteam_id": "aston_villa",
+                "match_date": "2024-11-29",
+                "match_round": "Round 10",
+                "team_home_badge": "https://www.premierleague.com/clubs/14/Newcastle-United",
+                "team_away_badge": "https://www.premierleague.com/clubs/4/Aston-Villa",
+                "match_hometeam_score": "3",
+                "match_awayteam_score": "2",
+                "match_live": "false",
+                "goalscorer": [
+                    {
+                        "time": "11'",
+                        "scorer": "Callum Wilson",
+                        "team": "Newcastle United"
+                    },
+                    {
+                        "time": "35'",
+                        "scorer": "Alexander Isak",
+                        "team": "Newcastle United"
+                    },
+                    {
+                        "time": "52'",
+                        "scorer": "Ollie Watkins",
+                        "team": "Aston Villa"
+                    },
+                    {
+                        "time": "63'",
+                        "scorer": "Jacob Ramsey",
+                        "team": "Aston Villa"
+                    },
+                    {
+                        "time": "74'",
+                        "scorer": "Bruno Guimarães",
+                        "team": "Newcastle United"
+                    }
+                ],
+                "cards": [
+                    {
+                        "time": "17'",
+                        "player": "Kieran Trippier",
+                        "team": "Newcastle United",
+                        "card": "yellow"
+                    },
+                    {
+                        "time": "68'",
+                        "player": "Tyrone Mings",
+                        "team": "Aston Villa",
+                        "card": "yellow"
+                    }
+                ],
+                "substitutions": {
+                    "home": [
+                        {
+                            "time": "78'",
+                            "player_in": "Miguel Almirón",
+                            "player_out": "Anthony Gordon"
+                        }
+                    ],
+                    "away": [
+                        {
+                            "time": "72'",
+                            "player_in": "Leander Dendoncker",
+                            "player_out": "John McGinn"
+                        }
+                    ]
+                }
+            },
+            {
+                "match_time": "19:00",
+                "match_hometeam_name": "Everton",
+                "match_awayteam_name": "Southampton",
+                "match_hometeam_id": "everton",
+                "match_awayteam_id": "southampton",
+                "match_date": "2024-11-30",
+                "match_round": "Round 10",
+                "team_home_badge": "https://www.premierleague.com/clubs/6/Everton",
+                "team_away_badge": "https://www.premierleague.com/clubs/21/Southampton",
+                "match_hometeam_score": "2",
+                "match_awayteam_score": "0",
+                "match_live": "false",
+                "goalscorer": [
+                    {
+                        "time": "28'",
+                        "scorer": "Dominic Calvert-Lewin",
+                        "team": "Everton"
+                    },
+                    {
+                        "time": "50'",
+                        "scorer": "Neal Maupay",
+                        "team": "Everton"
+                    }
+                ],
+                "cards": [
+                    {
+                        "time": "42'",
+                        "player": "Idrissa Gueye",
+                        "team": "Everton",
+                        "card": "yellow"
+                    },
+                    {
+                        "time": "63'",
+                        "player": "Mohamed Salisu",
+                        "team": "Southampton",
+                        "card": "yellow"
+                    }
+                ],
+                "substitutions": {
+                    "home": [
+                        {
+                            "time": "60'",
+                            "player_in": "Seamus Coleman",
+                            "player_out": "Vitaliy Mykolenko"
+                        }
+                    ],
+                    "away": [
+                        {
+                            "time": "76'",
+                            "player_in": "Che Adams",
+                            "player_out": "Theo Walcott"
+                        }
+                    ]
+                }
+            },
+            {
+                "match_time": "18:00",
+                "match_hometeam_name": "Liverpool",
+                "match_awayteam_name": "Arsenal",
+                "match_hometeam_id": "liverpool",
+                "match_awayteam_id": "arsenal",
+                "match_date": "2024-11-27",
+                "match_round": "Round 10",
+                "team_home_badge": "https://www.premierleague.com/clubs/11/Liverpool",
+                "team_away_badge": "https://www.premierleague.com/clubs/1/Arsenal",
+                "match_hometeam_score": "2",
+                "match_awayteam_score": "1",
+                "match_live": "false",
+                "goalscorer": [
+                    {
+                        "time": "12'",
+                        "scorer": "Mohamed Salah",
+                        "team": "Liverpool"
+                    },
+                    {
+                        "time": "58'",
+                        "scorer": "Darwin Núñez",
+                        "team": "Liverpool"
+                    },
+                    {
+                        "time": "75'",
+                        "scorer": "Martin Ødegaard",
+                        "team": "Arsenal"
+                    }
+                ],
+                "cards": [
+                    {
+                        "time": "27'",
+                        "player": "Virgil van Dijk",
+                        "team": "Liverpool",
+                        "card": "yellow"
+                    },
+                    {
+                        "time": "82'",
+                        "player": "Bukayo Saka",
+                        "team": "Arsenal",
+                        "card": "yellow"
+                    }
+                ],
+                "substitutions": {
+                    "home": [
+                        {
+                            "time": "67'",
+                            "player_in": "Cody Gakpo",
+                            "player_out": "Luis Díaz"
+                        }
+                    ],
+                    "away": [
+                        {
+                            "time": "71'",
+                            "player_in": "Leandro Trossard",
+                            "player_out": "Gabriel Jesus"
+                        }
+                    ]
+                }
+            },
+            {
+                "match_time": "21:00",
+                "match_hometeam_name": "Manchester City",
+                "match_awayteam_name": "Chelsea",
+                "match_hometeam_id": "manchester_city",
+                "match_awayteam_id": "chelsea",
+                "match_date": "2024-11-27",
+                "match_round": "Round 10",
+                "team_home_badge": "https://www.premierleague.com/clubs/10/Manchester-City",
+                "team_away_badge": "https://www.premierleague.com/clubs/3/Chelsea",
+                "match_hometeam_score": "4",
+                "match_awayteam_score": "2",
+                "match_live": "false",
+                "goalscorer": [
+                    {
+                        "time": "9'",
+                        "scorer": "Erling Haaland",
+                        "team": "Manchester City"
+                    },
+                    {
+                        "time": "33'",
+                        "scorer": "Jack Grealish",
+                        "team": "Manchester City"
+                    },
+                    {
+                        "time": "49'",
+                        "scorer": "Raheem Sterling",
+                        "team": "Chelsea"
+                    },
+                    {
+                        "time": "63'",
+                        "scorer": "Julian Álvarez",
+                        "team": "Manchester City"
+                    },
+                    {
+                        "time": "79'",
+                        "scorer": "Kai Havertz",
+                        "team": "Chelsea"
+                    },
+                    {
+                        "time": "85'",
+                        "scorer": "Phil Foden",
+                        "team": "Manchester City"
+                    }
+                ],
+                "cards": [
+                    {
+                        "time": "21'",
+                        "player": "Ruben Dias",
+                        "team": "Manchester City",
+                        "card": "yellow"
+                    },
+                    {
+                        "time": "67'",
+                        "player": "Conor Gallagher",
+                        "team": "Chelsea",
+                        "card": "yellow"
+                    }
+                ],
+                "substitutions": {
+                    "home": [
+                        {
+                            "time": "60'",
+                            "player_in": "Bernardo Silva",
+                            "player_out": "Jack Grealish"
+                        }
+                    ],
+                    "away": [
+                        {
+                            "time": "72'",
+                            "player_in": "Mason Mount",
+                            "player_out": "Raheem Sterling"
+                        }
+                    ]
+                }
+            },
+            {
+                "match_time": "16:00",
+                "match_hometeam_name": "Tottenham Hotspur",
+                "match_awayteam_name": "Manchester United",
+                "match_hometeam_id": "tottenham_hotspur",
+                "match_awayteam_id": "manchester_united",
+                "match_date": "2024-11-28",
+                "match_round": "Round 10",
+                "team_home_badge": "https://www.premierleague.com/clubs/10/Tottenham-Hotspur",
+                "team_away_badge": "https://www.premierleague.com/clubs/8/Manchester-United",
+                "match_hometeam_score": "1",
+                "match_awayteam_score": "1",
+                "match_live": "false",
+                "goalscorer": [
+                    {
+                        "time": "18'",
+                        "scorer": "Son Heung-min",
+                        "team": "Tottenham Hotspur"
+                    },
+                    {
+                        "time": "64'",
+                        "scorer": "Bruno Fernandes",
+                        "team": "Manchester United"
+                    }
+                ],
+                "cards": [
+                    {
+                        "time": "35'",
+                        "player": "Cristian Romero",
+                        "team": "Tottenham Hotspur",
+                        "card": "yellow"
+                    },
+                    {
+                        "time": "50'",
+                        "player": "Lisandro Martínez",
+                        "team": "Manchester United",
+                        "card": "yellow"
+                    }
+                ],
+                "substitutions": {
+                    "home": [
+                        {
+                            "time": "75'",
+                            "player_in": "Richarlison",
+                            "player_out": "Dejan Kulusevski"
+                        }
+                    ],
+                    "away": [
+                        {
+                            "time": "80'",
+                            "player_in": "Anthony Martial",
+                            "player_out": "Jadon Sancho"
+                        }
+                    ]
+                }
+            },
+            {
+                "match_time": "18:30",
+                "match_hometeam_name": "Leeds United",
+                "match_awayteam_name": "West Ham United",
+                "match_hometeam_id": "leeds_united",
+                "match_awayteam_id": "west_ham_united",
+                "match_date": "2024-11-28",
+                "match_round": "Round 10",
+                "team_home_badge": "https://www.premierleague.com/clubs/13/Leeds-United",
+                "team_away_badge": "https://www.premierleague.com/clubs/20/West-Ham-United",
+                "match_hometeam_score": "0",
+                "match_awayteam_score": "1",
+                "match_live": "false",
+                "goalscorer": [
+                    {
+                        "time": "67'",
+                        "scorer": "Jarrod Bowen",
+                        "team": "West Ham United"
+                    }
+                ],
+                "cards": [
+                    {
+                        "time": "45'",
+                        "player": "Tyler Adams",
+                        "team": "Leeds United",
+                        "card": "yellow"
+                    },
+                    {
+                        "time": "82'",
+                        "player": "Tomas Soucek",
+                        "team": "West Ham United",
+                        "card": "yellow"
+                    }
+                ],
+                "substitutions": {
+                    "home": [
+                        {
+                            "time": "60'",
+                            "player_in": "Wilfried Gnonto",
+                            "player_out": "Luis Sinisterra"
+                        }
+                    ],
+                    "away": [
+                        {
+                            "time": "74'",
+                            "player_in": "Pablo Fornals",
+                            "player_out": "Said Benrahma"
+                        }
+                    ]
+                }
+            },
+            {
+                "match_time": "20:00",
+                "match_hometeam_name": "Newcastle United",
+                "match_awayteam_name": "Aston Villa",
+                "match_hometeam_id": "newcastle_united",
+                "match_awayteam_id": "aston_villa",
+                "match_date": "2024-11-29",
+                "match_round": "Round 10",
+                "team_home_badge": "https://www.premierleague.com/clubs/14/Newcastle-United",
+                "team_away_badge": "https://www.premierleague.com/clubs/4/Aston-Villa",
+                "match_hometeam_score": "3",
+                "match_awayteam_score": "2",
+                "match_live": "false",
+                "goalscorer": [
+                    {
+                        "time": "11'",
+                        "scorer": "Callum Wilson",
+                        "team": "Newcastle United"
+                    },
+                    {
+                        "time": "35'",
+                        "scorer": "Alexander Isak",
+                        "team": "Newcastle United"
+                    },
+                    {
+                        "time": "52'",
+                        "scorer": "Ollie Watkins",
+                        "team": "Aston Villa"
+                    },
+                    {
+                        "time": "63'",
+                        "scorer": "Jacob Ramsey",
+                        "team": "Aston Villa"
+                    },
+                    {
+                        "time": "74'",
+                        "scorer": "Bruno Guimarães",
+                        "team": "Newcastle United"
+                    }
+                ],
+                "cards": [
+                    {
+                        "time": "17'",
+                        "player": "Kieran Trippier",
+                        "team": "Newcastle United",
+                        "card": "yellow"
+                    },
+                    {
+                        "time": "68'",
+                        "player": "Tyrone Mings",
+                        "team": "Aston Villa",
+                        "card": "yellow"
+                    }
+                ],
+                "substitutions": {
+                    "home": [
+                        {
+                            "time": "78'",
+                            "player_in": "Miguel Almirón",
+                            "player_out": "Anthony Gordon"
+                        }
+                    ],
+                    "away": [
+                        {
+                            "time": "72'",
+                            "player_in": "Leander Dendoncker",
+                            "player_out": "John McGinn"
+                        }
+                    ]
+                }
+            },
+            {
+                "match_time": "19:00",
+                "match_hometeam_name": "Everton",
+                "match_awayteam_name": "Southampton",
+                "match_hometeam_id": "everton",
+                "match_awayteam_id": "southampton",
+                "match_date": "2024-11-30",
+                "match_round": "Round 10",
+                "team_home_badge": "https://www.premierleague.com/clubs/6/Everton",
+                "team_away_badge": "https://www.premierleague.com/clubs/21/Southampton",
+                "match_hometeam_score": "2",
+                "match_awayteam_score": "0",
+                "match_live": "false",
+                "goalscorer": [
+                    {
+                        "time": "28'",
+                        "scorer": "Dominic Calvert-Lewin",
+                        "team": "Everton"
+                    },
+                    {
+                        "time": "50'",
+                        "scorer": "Neal Maupay",
+                        "team": "Everton"
+                    }
+                ],
+                "cards": [
+                    {
+                        "time": "42'",
+                        "player": "Idrissa Gueye",
+                        "team": "Everton",
+                        "card": "yellow"
+                    },
+                    {
+                        "time": "63'",
+                        "player": "Mohamed Salisu",
+                        "team": "Southampton",
+                        "card": "yellow"
+                    }
+                ],
+                "substitutions": {
+                    "home": [
+                        {
+                            "time": "60'",
+                            "player_in": "Seamus Coleman",
+                            "player_out": "Vitaliy Mykolenko"
+                        }
+                    ],
+                    "away": [
+                        {
+                            "time": "76'",
+                            "player_in": "Che Adams",
+                            "player_out": "Theo Walcott"
+                        }
+                    ]
+                }
+            },
+            {
+                "match_time": "18:00",
+                "match_hometeam_name": "Liverpool",
+                "match_awayteam_name": "Arsenal",
+                "match_hometeam_id": "liverpool",
+                "match_awayteam_id": "arsenal",
+                "match_date": "2024-11-27",
+                "match_round": "Round 10",
+                "team_home_badge": "https://www.premierleague.com/clubs/11/Liverpool",
+                "team_away_badge": "https://www.premierleague.com/clubs/1/Arsenal",
+                "match_hometeam_score": "2",
+                "match_awayteam_score": "1",
+                "match_live": "false",
+                "goalscorer": [
+                    {
+                        "time": "12'",
+                        "scorer": "Mohamed Salah",
+                        "team": "Liverpool"
+                    },
+                    {
+                        "time": "58'",
+                        "scorer": "Darwin Núñez",
+                        "team": "Liverpool"
+                    },
+                    {
+                        "time": "75'",
+                        "scorer": "Martin Ødegaard",
+                        "team": "Arsenal"
+                    }
+                ],
+                "cards": [
+                    {
+                        "time": "27'",
+                        "player": "Virgil van Dijk",
+                        "team": "Liverpool",
+                        "card": "yellow"
+                    },
+                    {
+                        "time": "82'",
+                        "player": "Bukayo Saka",
+                        "team": "Arsenal",
+                        "card": "yellow"
+                    }
+                ],
+                "substitutions": {
+                    "home": [
+                        {
+                            "time": "67'",
+                            "player_in": "Cody Gakpo",
+                            "player_out": "Luis Díaz"
+                        }
+                    ],
+                    "away": [
+                        {
+                            "time": "71'",
+                            "player_in": "Leandro Trossard",
+                            "player_out": "Gabriel Jesus"
+                        }
+                    ]
+                }
+            },
+            {
+                "match_time": "21:00",
+                "match_hometeam_name": "Manchester City",
+                "match_awayteam_name": "Chelsea",
+                "match_hometeam_id": "manchester_city",
+                "match_awayteam_id": "chelsea",
+                "match_date": "2024-11-27",
+                "match_round": "Round 10",
+                "team_home_badge": "https://www.premierleague.com/clubs/10/Manchester-City",
+                "team_away_badge": "https://www.premierleague.com/clubs/3/Chelsea",
+                "match_hometeam_score": "4",
+                "match_awayteam_score": "2",
+                "match_live": "false",
+                "goalscorer": [
+                    {
+                        "time": "9'",
+                        "scorer": "Erling Haaland",
+                        "team": "Manchester City"
+                    },
+                    {
+                        "time": "33'",
+                        "scorer": "Jack Grealish",
+                        "team": "Manchester City"
+                    },
+                    {
+                        "time": "49'",
+                        "scorer": "Raheem Sterling",
+                        "team": "Chelsea"
+                    },
+                    {
+                        "time": "63'",
+                        "scorer": "Julian Álvarez",
+                        "team": "Manchester City"
+                    },
+                    {
+                        "time": "79'",
+                        "scorer": "Kai Havertz",
+                        "team": "Chelsea"
+                    },
+                    {
+                        "time": "85'",
+                        "scorer": "Phil Foden",
+                        "team": "Manchester City"
+                    }
+                ],
+                "cards": [
+                    {
+                        "time": "21'",
+                        "player": "Ruben Dias",
+                        "team": "Manchester City",
+                        "card": "yellow"
+                    },
+                    {
+                        "time": "67'",
+                        "player": "Conor Gallagher",
+                        "team": "Chelsea",
+                        "card": "yellow"
+                    }
+                ],
+                "substitutions": {
+                    "home": [
+                        {
+                            "time": "60'",
+                            "player_in": "Bernardo Silva",
+                            "player_out": "Jack Grealish"
+                        }
+                    ],
+                    "away": [
+                        {
+                            "time": "72'",
+                            "player_in": "Mason Mount",
+                            "player_out": "Raheem Sterling"
+                        }
+                    ]
+                }
+            },
+            {
+                "match_time": "16:00",
+                "match_hometeam_name": "Tottenham Hotspur",
+                "match_awayteam_name": "Manchester United",
+                "match_hometeam_id": "tottenham_hotspur",
+                "match_awayteam_id": "manchester_united",
+                "match_date": "2024-11-28",
+                "match_round": "Round 10",
+                "team_home_badge": "https://www.premierleague.com/clubs/10/Tottenham-Hotspur",
+                "team_away_badge": "https://www.premierleague.com/clubs/8/Manchester-United",
+                "match_hometeam_score": "1",
+                "match_awayteam_score": "1",
+                "match_live": "false",
+                "goalscorer": [
+                    {
+                        "time": "18'",
+                        "scorer": "Son Heung-min",
+                        "team": "Tottenham Hotspur"
+                    },
+                    {
+                        "time": "64'",
+                        "scorer": "Bruno Fernandes",
+                        "team": "Manchester United"
+                    }
+                ],
+                "cards": [
+                    {
+                        "time": "35'",
+                        "player": "Cristian Romero",
+                        "team": "Tottenham Hotspur",
+                        "card": "yellow"
+                    },
+                    {
+                        "time": "50'",
+                        "player": "Lisandro Martínez",
+                        "team": "Manchester United",
+                        "card": "yellow"
+                    }
+                ],
+                "substitutions": {
+                    "home": [
+                        {
+                            "time": "75'",
+                            "player_in": "Richarlison",
+                            "player_out": "Dejan Kulusevski"
+                        }
+                    ],
+                    "away": [
+                        {
+                            "time": "80'",
+                            "player_in": "Anthony Martial",
+                            "player_out": "Jadon Sancho"
+                        }
+                    ]
+                }
+            },
+            {
+                "match_time": "18:30",
+                "match_hometeam_name": "Leeds United",
+                "match_awayteam_name": "West Ham United",
+                "match_hometeam_id": "leeds_united",
+                "match_awayteam_id": "west_ham_united",
+                "match_date": "2024-11-28",
+                "match_round": "Round 10",
+                "team_home_badge": "https://www.premierleague.com/clubs/13/Leeds-United",
+                "team_away_badge": "https://www.premierleague.com/clubs/20/West-Ham-United",
+                "match_hometeam_score": "0",
+                "match_awayteam_score": "1",
+                "match_live": "false",
+                "goalscorer": [
+                    {
+                        "time": "67'",
+                        "scorer": "Jarrod Bowen",
+                        "team": "West Ham United"
+                    }
+                ],
+                "cards": [
+                    {
+                        "time": "45'",
+                        "player": "Tyler Adams",
+                        "team": "Leeds United",
+                        "card": "yellow"
+                    },
+                    {
+                        "time": "82'",
+                        "player": "Tomas Soucek",
+                        "team": "West Ham United",
+                        "card": "yellow"
+                    }
+                ],
+                "substitutions": {
+                    "home": [
+                        {
+                            "time": "60'",
+                            "player_in": "Wilfried Gnonto",
+                            "player_out": "Luis Sinisterra"
+                        }
+                    ],
+                    "away": [
+                        {
+                            "time": "74'",
+                            "player_in": "Pablo Fornals",
+                            "player_out": "Said Benrahma"
+                        }
+                    ]
+                }
+            },
+            {
+                "match_time": "20:00",
+                "match_hometeam_name": "Newcastle United",
+                "match_awayteam_name": "Aston Villa",
+                "match_hometeam_id": "newcastle_united",
+                "match_awayteam_id": "aston_villa",
+                "match_date": "2024-11-29",
+                "match_round": "Round 10",
+                "team_home_badge": "https://www.premierleague.com/clubs/14/Newcastle-United",
+                "team_away_badge": "https://www.premierleague.com/clubs/4/Aston-Villa",
+                "match_hometeam_score": "3",
+                "match_awayteam_score": "2",
+                "match_live": "false",
+                "goalscorer": [
+                    {
+                        "time": "11'",
+                        "scorer": "Callum Wilson",
+                        "team": "Newcastle United"
+                    },
+                    {
+                        "time": "35'",
+                        "scorer": "Alexander Isak",
+                        "team": "Newcastle United"
+                    },
+                    {
+                        "time": "52'",
+                        "scorer": "Ollie Watkins",
+                        "team": "Aston Villa"
+                    },
+                    {
+                        "time": "63'",
+                        "scorer": "Jacob Ramsey",
+                        "team": "Aston Villa"
+                    },
+                    {
+                        "time": "74'",
+                        "scorer": "Bruno Guimarães",
+                        "team": "Newcastle United"
+                    }
+                ],
+                "cards": [
+                    {
+                        "time": "17'",
+                        "player": "Kieran Trippier",
+                        "team": "Newcastle United",
+                        "card": "yellow"
+                    },
+                    {
+                        "time": "68'",
+                        "player": "Tyrone Mings",
+                        "team": "Aston Villa",
+                        "card": "yellow"
+                    }
+                ],
+                "substitutions": {
+                    "home": [
+                        {
+                            "time": "78'",
+                            "player_in": "Miguel Almirón",
+                            "player_out": "Anthony Gordon"
+                        }
+                    ],
+                    "away": [
+                        {
+                            "time": "72'",
+                            "player_in": "Leander Dendoncker",
+                            "player_out": "John McGinn"
+                        }
+                    ]
+                }
+            },
+            {
+                "match_time": "19:00",
+                "match_hometeam_name": "Everton",
+                "match_awayteam_name": "Southampton",
+                "match_hometeam_id": "everton",
+                "match_awayteam_id": "southampton",
+                "match_date": "2024-11-30",
+                "match_round": "Round 10",
+                "team_home_badge": "https://www.premierleague.com/clubs/6/Everton",
+                "team_away_badge": "https://www.premierleague.com/clubs/21/Southampton",
+                "match_hometeam_score": "2",
+                "match_awayteam_score": "0",
+                "match_live": "false",
+                "goalscorer": [
+                    {
+                        "time": "28'",
+                        "scorer": "Dominic Calvert-Lewin",
+                        "team": "Everton"
+                    },
+                    {
+                        "time": "50'",
+                        "scorer": "Neal Maupay",
+                        "team": "Everton"
+                    }
+                ],
+                "cards": [
+                    {
+                        "time": "42'",
+                        "player": "Idrissa Gueye",
+                        "team": "Everton",
+                        "card": "yellow"
+                    },
+                    {
+                        "time": "63'",
+                        "player": "Mohamed Salisu",
+                        "team": "Southampton",
+                        "card": "yellow"
+                    }
+                ],
+                "substitutions": {
+                    "home": [
+                        {
+                            "time": "60'",
+                            "player_in": "Seamus Coleman",
+                            "player_out": "Vitaliy Mykolenko"
+                        }
+                    ],
+                    "away": [
+                        {
+                            "time": "76'",
+                            "player_in": "Che Adams",
+                            "player_out": "Theo Walcott"
+                        }
+                    ]
+                }
+            }
+        ]
+    }

@@ -6,7 +6,7 @@
     <button (click)="goToRegister()">Zarejestruj</button>
     <button (click)="goToLogin()">Zaloguj</button>
 
-    <button routerLink="/not-logged-in" routerLinkActive="active">Wyniki</button>
+    <button (click)="goToResults()">Wyniki</button>
     <button routerLink="/not-logged-in" routerLinkActive="active">Tabela</button>
     <button (click)="goToMatchList()">Terminarz</button>
     <button routerLink="/not-logged-in" routerLinkActive="active">Statystyki</button>
@@ -37,10 +37,17 @@
         <app-forgot-password (switchView)="switchView($event)"></app-forgot-password>
       </ng-container>
 
+      <!-- Widok terminarza -->
       <ng-container *ngSwitchCase="'match-list'">
         <app-match-list (switchView)="switchView($event)"></app-match-list>
       </ng-container>
 
+      <!-- Widok wyników -->
+      <ng-container *ngSwitchCase="'results'">
+        <app-results (switchView)="switchView($event)"></app-results>
+    </ng-container>
+
+      <!-- Widok zalogowanego użytkownika -->
       <ng-container *ngSwitchCase="'logged'">
           <app-not-logged-in (switchView)="switchView($event)"></app-not-logged-in>
       </ng-container>

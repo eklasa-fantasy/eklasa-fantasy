@@ -33,6 +33,10 @@ export class MainComponent {
     this.isLoginScreen = false;
   }
 
+  goToResults(){
+    this.switchView('results');
+  }
+
   gotToMatchList(){
     this.switchView('match-list')
   }
