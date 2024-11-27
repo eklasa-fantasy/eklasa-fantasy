@@ -11,7 +11,7 @@
     <button (click)="goToMatchList()">Terminarz</button>
     <button routerLink="/not-logged-in" routerLinkActive="active">Statystyki</button>
 
-    <button (click)="toggleAccount()">Konto</button>
+    <button (click)="goToLogged()">Konto</button>
   </div>
 </div>
 
@@ -39,6 +39,10 @@
 
       <ng-container *ngSwitchCase="'match-list'">
         <app-match-list (switchView)="switchView($event)"></app-match-list>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="'logged'">
+          <app-not-logged-in (switchView)="switchView($event)"></app-not-logged-in>
       </ng-container>
 
       <!-- Domyślny widok -->

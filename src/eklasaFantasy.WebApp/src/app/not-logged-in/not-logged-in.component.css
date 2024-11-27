@@ -1,25 +1,28 @@
-/*.not-logged-in {
-    display: grid;
-    grid-template-columns: 1fr 2fr 1fr; 
-    gap: 3%; 
-  
-    .section {
-      background-color: #f4f4f4;
-      padding: 2%; 
-      border-radius: 5%; 
-      box-shadow: 0 0.2% 0.5% rgba(0, 0, 0, 0.1); 
-    }
-  
-    .wyniki {
-      grid-column: 1;
-    }
-  
-    .tabela {
-      grid-column: 2;
-    }
-  
-    .terminarz {
-      grid-column: 3;
-    }
-  }
-  */
+.dashboard-container {
+  display: flex;
+  flex-direction: row; /* Ustawia sekcje obok siebie */
+  gap: 20px; /* Dodaje odstęp między sekcjami */
+  margin: 0 1% 0 1%;
+  opacity: 0.8;
+}
+
+.section {
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  flex: 1; /* Opcjonalnie, aby sekcje zajmowały równą przestrzeń */
+  background-color: #333;
+}
+
+h2 {
+  font-family: 'Arial', sans-serif; /* Możesz zmienić na wybraną czcionkę */
+  color: white; /* Zmienia kolor czcionki na zielony */
+  margin-top: 0;
+  margin-bottom: 2%;
+}
+
+/* Zmiana czcionki i koloru dla innych tekstów w sekcji */
+.section p {
+  font-family: 'Verdana', sans-serif; /* Przykładowa czcionka dla paragrafów */
+  color: #333; /* Zmiana koloru tekstu na ciemnoszary */
+}

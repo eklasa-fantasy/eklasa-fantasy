@@ -33,6 +33,14 @@ export class MainComponent {
     this.isLoginScreen = false;
   }
 
+  gotToMatchList(){
+    this.switchView('match-list')
+  }
+
+  goToLogged(){
+    this.switchView('logged');
+  }
+
   goToLogin(){
     this.switchView('login');
   }

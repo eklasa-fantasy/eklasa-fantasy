@@ -1,6 +1,6 @@
 :host {
   display: block;
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   background-image: url('../../images/u0.jpg');
   background-size: cover;
