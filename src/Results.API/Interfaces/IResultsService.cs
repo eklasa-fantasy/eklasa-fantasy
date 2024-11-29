@@ -9,5 +9,7 @@ namespace Results.API.Interfaces
         Task<List<ResultDto>> GetResultsAll();
         Task<List<ResultDto>> GetResultsByTeam(int teamId);
         Task<List<ResultDto>> GetResultsFromToDate(DateTime dateFrom, DateTime dateTo);
+
+        Task<List<ResultDto>> GetResultsByRound(int round);
     }
 }
