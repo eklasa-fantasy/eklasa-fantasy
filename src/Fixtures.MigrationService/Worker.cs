@@ -24,7 +24,7 @@ public class Worker(
         
         try
         {
-            using var scope = serviceProvider.CreateScope();
+            using var scope = _serviceProvider.CreateScope();
             var dbContext = scope.ServiceProvider.GetRequiredService<FixturesDbContext>();
             var footballApiService = scope.ServiceProvider.GetRequiredService<IFootballApiService>();
             var fixturesService = scope.ServiceProvider.GetRequiredService<IFixtureService>();
