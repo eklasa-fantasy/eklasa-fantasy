@@ -12,7 +12,8 @@ namespace Fixtures.API.Controllers
     [Route("api/fixtures")]
     [ApiController]
 
-    public class FixturesController : ControllerBase{
+    public class FixturesController : ControllerBase
+    {
         private readonly IFootballApiService _footballApiService;
         private readonly IFixtureService _fixtureService;
 
@@ -24,13 +25,15 @@ namespace Fixtures.API.Controllers
 
         [HttpGet("footballapi")] // request powinien być wykonywany co określony czas, poniższa metoda zostaje w celu debugowania
 
-        public async Task<IActionResult> GetFixtures(){
-            try{
+        public async Task<IActionResult> GetFixtures()
+        {
+            try
+            {
                 //TODO Metoda będzie używana do pobrania meczów z bazy danych za pomocą FixturesService
                 string dateToday = DateTime.Now.Year.ToString() + "-" + DateTime.Now.Month.ToString() + "-" + DateTime.Now.Day.ToString();
-                var matches = await _footballApiService.GetFixturesAsync(dateToday,"2025-06-01");
+                var matches = await _footballApiService.GetFixturesAsync(dateToday, "2025-06-01");
 
-                 if (matches == null || !matches.Any())
+                if (matches == null || !matches.Any())
                 {
                     return NotFound("No fixtures found.");
                 }
@@ -45,16 +48,18 @@ namespace Fixtures.API.Controllers
 
         [HttpGet("all")]
 
-        public async Task<IActionResult> GetAll(){
-            try{
-            var matches = await _fixtureService.GetFixturesAll();
+        public async Task<IActionResult> GetAll()
+        {
+            try
+            {
+                var matches = await _fixtureService.GetFixturesAll();
 
-            if (matches == null || !matches.Any())
+                if (matches == null || !matches.Any())
                 {
                     return NotFound("No fixtures found.");
                 }
 
-            return Ok(matches);
+                return Ok(matches);
 
             }
             catch (Exception ex)
@@ -67,16 +72,18 @@ namespace Fixtures.API.Controllers
 
         [HttpGet("fromToDate")]
 
-        public async Task<IActionResult> GetFromToDate([FromBody] FixturesFromToDateDto fixturesFromToDateDto){
-            try{
-            var matches = await _fixtureService.GetFixturesDate(fixturesFromToDateDto.DateFrom, fixturesFromToDateDto.DateTo);
+        public async Task<IActionResult> GetFromToDate([FromBody] FixturesFromToDateDto fixturesFromToDateDto)
+        {
+            try
+            {
+                var matches = await _fixtureService.GetFixturesDate(fixturesFromToDateDto.DateFrom, fixturesFromToDateDto.DateTo);
 
-            if (matches == null || !matches.Any())
+                if (matches == null || !matches.Any())
                 {
                     return NotFound("No fixtures found.");
                 }
 
-            return Ok(matches);
+                return Ok(matches);
 
             }
             catch (Exception ex)
@@ -87,18 +94,20 @@ namespace Fixtures.API.Controllers
 
         }
 
-         [HttpGet("team")]
+        [HttpGet("team")]
 
-        public async Task<IActionResult> GetTeam([FromBody] FixturesTeamDto fixturesTeamDto){
-            try{
-            var matches = await _fixtureService.GetFixturesTeam(fixturesTeamDto.teamId);
+        public async Task<IActionResult> GetTeam([FromBody] FixturesTeamDto fixturesTeamDto)
+        {
+            try
+            {
+                var matches = await _fixtureService.GetFixturesTeam(fixturesTeamDto.teamId);
 
-            if (matches == null || !matches.Any())
+                if (matches == null || !matches.Any())
                 {
                     return NotFound("No fixtures found.");
                 }
 
-            return Ok(matches);
+                return Ok(matches);
 
             }
             catch (Exception ex)
@@ -109,7 +118,7 @@ namespace Fixtures.API.Controllers
 
         }
 
-        
+
 
     }
 
