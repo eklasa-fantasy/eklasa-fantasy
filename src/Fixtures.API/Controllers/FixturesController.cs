@@ -72,7 +72,7 @@ namespace Fixtures.API.Controllers
 
         [HttpGet("fromToDate")]
 
-        public async Task<IActionResult> GetFromToDate([FromBody] FixturesFromToDateDto fixturesFromToDateDto)
+        public async Task<IActionResult> GetFromToDate([FromQuery] FixturesFromToDateDto fixturesFromToDateDto)
         {
             try
             {
@@ -96,7 +96,7 @@ namespace Fixtures.API.Controllers
 
         [HttpGet("team")]
 
-        public async Task<IActionResult> GetTeam([FromBody] FixturesTeamDto fixturesTeamDto)
+        public async Task<IActionResult> GetTeam([FromQuery] FixturesTeamDto fixturesTeamDto)
         {
             try
             {

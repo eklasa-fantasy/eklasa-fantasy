@@ -26,12 +26,12 @@ public class Worker(
         {
             using var scope = _serviceProvider.CreateScope();
             var dbContext = scope.ServiceProvider.GetRequiredService<FixturesDbContext>();
-            var footballApiService = scope.ServiceProvider.GetRequiredService<IFootballApiService>();
-            var fixturesService = scope.ServiceProvider.GetRequiredService<IFixtureService>();
+            // var footballApiService = scope.ServiceProvider.GetRequiredService<IFootballApiService>();
+            // var fixturesService = scope.ServiceProvider.GetRequiredService<IFixtureService>();
 
             await EnsureDatabaseAsync(dbContext, cancellationToken);
             await RunMigrationAsync(dbContext, cancellationToken);
-            await SeedDataAsync(dbContext, cancellationToken, fixturesService, footballApiService);
+            await SeedDataAsync(dbContext, cancellationToken);
         }
         catch (Exception ex)
         {
@@ -72,18 +72,17 @@ public class Worker(
 
     protected async Task SeedDataAsync(
         FixturesDbContext dbContext, 
-        CancellationToken cancellationToken,
-        IFixtureService fixtureService,
-        IFootballApiService footballApiService)
+        CancellationToken cancellationToken
+        // IFixtureService fixtureService,
+        // IFootballApiService footballApiService
+        )
     {
-        string dateToday = DateTime.Now.Year.ToString() + "-" + DateTime.Now.Month.ToString() + "-" + DateTime.Now.Day.ToString();
         var strategy = dbContext.Database.CreateExecutionStrategy();
         await strategy.ExecuteAsync(async () =>
         {
             // Seed the database
             await using var transaction = await dbContext.Database.BeginTransactionAsync(cancellationToken);
-            var apiFixtures = await footballApiService.GetFixturesAsync(dateToday, "2025-06-01");
-            await fixtureService.SaveApiFixturesToDatabase(apiFixtures);
+            // await fixtureService.SeedDatabase();
             await dbContext.SaveChangesAsync(cancellationToken);
             await transaction.CommitAsync(cancellationToken);
         });

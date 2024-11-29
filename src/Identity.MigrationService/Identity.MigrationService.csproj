@@ -14,5 +14,6 @@
   <ItemGroup>
     <ProjectReference Include="..\eklasaFantasy.ServiceDefaults\eklasaFantasy.ServiceDefaults.csproj" />
     <ProjectReference Include="..\Identity.API\Identity.API.csproj" />
+    <ProjectReference Include="..\Fixtures.API\Fixtures.API.csproj" />
   </ItemGroup>
 </Project>

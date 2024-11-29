@@ -11,5 +11,6 @@ namespace Fixtures.API.Interfaces
         Task<List<Fixture>> GetFixturesTeam(int teamId);
         Task<List<Fixture>> GetFixturesDate(DateTime dateFrom, DateTime dateTo);
         Task SaveApiFixturesToDatabase(List<APIFixtureDto> apiFixtures);
+        Task SeedDatabase();
     }
 }

@@ -7,8 +7,8 @@ var builder = Host.CreateApplicationBuilder(args);
 
 builder.AddServiceDefaults();
 
-builder.Services.AddScoped<IFootballApiService, FootballApiService>();
-builder.Services.AddScoped<IFixtureService, FixtureService>();
+// builder.Services.AddScoped<IFootballApiService, FootballApiService>();
+// builder.Services.AddScoped<IFixtureService, FixtureService>();
 
 builder.Services.AddHostedService<Worker>();
 

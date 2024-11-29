@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Fixtures.API.Migrations
 {
     [DbContext(typeof(FixturesDbContext))]
-    [Migration("20241123171213_AddFixturesTable")]
+    [Migration("20241129130926_AddFixturesTable")]
     partial class AddFixturesTable
     {
         /// <inheritdoc />
@@ -57,6 +57,9 @@ namespace Fixtures.API.Migrations
                     b.Property<string>("HomeTeamName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("MatchId")
+                        .HasColumnType("int");
 
                     b.Property<int>("Round")
                         .HasColumnType("int");

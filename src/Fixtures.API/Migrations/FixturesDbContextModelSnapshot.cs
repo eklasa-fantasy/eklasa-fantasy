@@ -55,6 +55,9 @@ namespace Fixtures.API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("MatchId")
+                        .HasColumnType("int");
+
                     b.Property<int>("Round")
                         .HasColumnType("int");
 

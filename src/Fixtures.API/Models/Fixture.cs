@@ -6,6 +6,7 @@ namespace Fixtures.API.Models{
     {
         
         public int Id {get; set;}
+        public int MatchId {get; set;}
 
         public DateTime Time { get; set; }
 
@@ -24,8 +25,5 @@ namespace Fixtures.API.Models{
         public string HomeTeamBadge {get; set;}
 
         public string AwayTeamBadge {get; set;}
-
-        //
-        
     }
 }

@@ -3,15 +3,19 @@ using Projects;
 var builder = DistributedApplication.CreateBuilder(args);
 
 // Configure SQL Server with existing instance
+var id_sql = builder.AddSqlServer("id-sql")
+                 .AddDatabase("id-sqldata");
+
 var sql = builder.AddSqlServer("sql")
-                 .AddDatabase("sqldata");
+                .AddDatabase("sqldata");
+
 
 
 var launchProfileName = ShouldUseHttpForEndpoints() ? "http" : "https";
 
 // Services
 var identityApi = builder.AddProject<Projects.Identity_API>("identity-api", launchProfileName)
-    .WithReference(sql);
+    .WithReference(id_sql);
 ;
 
 var fixturesApi = builder.AddProject<Projects.Fixtures_API>("fixtures-api", launchProfileName)
@@ -20,7 +24,7 @@ var fixturesApi = builder.AddProject<Projects.Fixtures_API>("fixtures-api", laun
 
 //Migrations
 builder.AddProject<Projects.Identity_MigrationService>("identity-migrations")
-    .WithReference(sql);
+    .WithReference(id_sql);
 builder.AddProject<Projects.Fixtures_MigrationService>("fixtures-migrations")
     .WithReference(sql);
 
