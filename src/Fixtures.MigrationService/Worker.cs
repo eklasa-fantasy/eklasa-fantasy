@@ -1,4 +1,5 @@
 using Fixtures.API.Data;
+using Fixtures.API.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage;
@@ -9,15 +10,20 @@ namespace Fixtures.MigrationService;
 
 public class Worker(
     IServiceProvider serviceProvider,
-    IHostApplicationLifetime hostApplicationLifetime) : BackgroundService
+    IHostApplicationLifetime hostApplicationLifetime,
+    IFootballApiService footballApiService,
+    IFixtureService fixtureService) : BackgroundService
 {
     public const string ActivitySourceName = "Migrations";
     private static readonly ActivitySource s_activitySource = new(ActivitySourceName);
 
+    private readonly IFootballApiService _footballApiService = footballApiService;
+    private readonly IFixtureService _fixtureService = fixtureService;
+
     protected override async Task ExecuteAsync(CancellationToken cancellationToken)
     {
         using var activity = s_activitySource.StartActivity("Migrating database", ActivityKind.Client);
-
+        
         try
         {
             using var scope = serviceProvider.CreateScope();
@@ -64,14 +70,16 @@ public class Worker(
         });
     }
 
-    private static async Task SeedDataAsync(FixturesDbContext dbContext, CancellationToken cancellationToken)
+    protected async Task SeedDataAsync(FixturesDbContext dbContext, CancellationToken cancellationToken)
     {
-
+        string dateToday = DateTime.Now.Year.ToString() + "-" + DateTime.Now.Month.ToString() + "-" + DateTime.Now.Day.ToString();
         var strategy = dbContext.Database.CreateExecutionStrategy();
         await strategy.ExecuteAsync(async () =>
         {
             // Seed the database
             await using var transaction = await dbContext.Database.BeginTransactionAsync(cancellationToken);
+            var apiFixtures = await _footballApiService.GetFixturesAsync(dateToday, "2025-06-01");
+            await _fixtureService.SaveApiFixturesToDatabase(apiFixtures);
             await dbContext.SaveChangesAsync(cancellationToken);
             await transaction.CommitAsync(cancellationToken);
         });
