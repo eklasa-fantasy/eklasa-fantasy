@@ -15,6 +15,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IFootballApiService, FootballApiService>(); 
+builder.Services.AddScoped<IResultsService, ResultsService>(); 
 
 var app = builder.Build();
 

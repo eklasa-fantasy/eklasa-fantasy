@@ -14,7 +14,7 @@ namespace Results.API.Controllers
         private readonly IResultsService _resultsService;
 
 
-        public ResultsController(IFootballApiService footballApiService, ResultsService resultsService)
+        public ResultsController(IFootballApiService footballApiService, IResultsService resultsService)
         {
 
             _footballApiService = footballApiService;
@@ -35,7 +35,7 @@ namespace Results.API.Controllers
 
                 if (results == null || !results.Any())
                 {
-                    return NotFound("No fixtures found.");
+                    return NotFound("No results found.");
                 }
 
                 return Ok(results);
