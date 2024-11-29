@@ -11,5 +11,6 @@ namespace Results.API.Interfaces
         Task<List<ResultDto>> GetResultsFromToDate(DateTime dateFrom, DateTime dateTo);
 
         Task<List<ResultDto>> GetResultsByRound(int round);
+        Task<List<ResultDto>> GetLiveScores();
     }
 }

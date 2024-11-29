@@ -63,5 +63,11 @@ namespace Results.API.Services
 
         }
 
+        public async Task<List<ResultDto>> GetLiveScores(){
+            // await SeedDatabase();
+
+            return null;
+        }
+
     }
 }

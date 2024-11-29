@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Results.API.Dtos;
 using Results.API.Interfaces;
+using Results.API.Services;
 using RouteAttribute = Microsoft.AspNetCore.Mvc.RouteAttribute;
 
 namespace Results.API.Controllers
@@ -9,12 +11,14 @@ namespace Results.API.Controllers
     public class ResultsController : ControllerBase
     {
         private readonly IFootballApiService _footballApiService;
+        private readonly IResultsService _resultsService;
 
 
-        public ResultsController(IFootballApiService footballApiService)
+        public ResultsController(IFootballApiService footballApiService, ResultsService resultsService)
         {
 
             _footballApiService = footballApiService;
+            _resultsService = resultsService;
 
         }
 
@@ -42,6 +46,124 @@ namespace Results.API.Controllers
             }
 
         }
+
+         [HttpGet("all")]
+          public async Task<IActionResult> GetAll()
+        {
+            try
+            {
+                var matches = await _resultsService.GetResultsAll();
+
+                if (matches == null || !matches.Any())
+                {
+                    return NotFound("No results found.");
+                }
+
+                return Ok(matches);
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occurred: {ex.Message}");
+            }
+
+
+        }
+
+        [HttpGet("fromToDate")]
+         public async Task<IActionResult> GetResultsFromToDate([FromQuery] ResultsFromToDateDtoRequest resultsFromToDateDto)
+        {
+            try
+            {
+                var matches = await _resultsService.GetResultsFromToDate(resultsFromToDateDto.DateFrom, resultsFromToDateDto.DateTo);
+
+                if (matches == null || !matches.Any())
+                {
+                    return NotFound("No results found.");
+                }
+
+                return Ok(matches);
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occurred: {ex.Message}");
+            }
+
+
+        }
+
+        [HttpGet("team")]
+        public async Task<IActionResult> GetResultsByTeam([FromQuery] ResultsTeamDtoRequest resultsTeamDto)
+        {
+            try
+            {
+                var matches = await _resultsService.GetResultsByTeam(resultsTeamDto.teamId);
+
+                if (matches == null || !matches.Any())
+                {
+                    return NotFound("No results found.");
+                }
+
+                return Ok(matches);
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occurred: {ex.Message}");
+            }
+
+
+        }
+
+         [HttpGet("round")]
+           public async Task<IActionResult> GetResultsByRound([FromQuery] ResultsRoundDtoRequest roundDto)
+        {
+            try
+            {
+                var matches = await _resultsService.GetResultsByRound(roundDto.round);
+
+                if (matches == null || !matches.Any())
+                {
+                    return NotFound("No results found.");
+                }
+
+                return Ok(matches);
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occurred: {ex.Message}");
+            }
+
+
+        }
+
+
+        [HttpGet("livescore")]
+        public async Task<IActionResult> GetLiveScore()
+        {
+            try
+            {
+                var matches = await _resultsService.GetLiveScores();
+
+                if (matches == null || !matches.Any())
+                {
+                    return NotFound("No results found.");
+                }
+
+                return Ok(matches);
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occurred: {ex.Message}");
+            }
+
+
+        }
+
+
     }
 
 
