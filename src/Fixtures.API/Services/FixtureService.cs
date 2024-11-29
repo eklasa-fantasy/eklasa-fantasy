@@ -10,7 +10,7 @@ namespace Fixtures.API.Services
     {
         public Task<List<Fixture>> GetFixturesAll()
         {
-             // w sumie nie potrzeba nam GetFixturesAll i GetFixturesDate, przecież wystarczy podać inne daty w FixturesController, ale zostawiam
+            // w sumie nie potrzeba nam GetFixturesAll i GetFixturesDate, przecież wystarczy podać inne daty w FixturesController, ale zostawiam
             //DateTime dateToday = DateTime.Now;
             //DateTime dateEnd = DateTime.ParseExact("2025-06-01", "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
             var fixtures = new List<Fixture>(); //TODO pobranie już istniejących modelów lub pobranie danych z bazy danych i konwersja ich na modele (Zależy jak Dominik będzie robił)
