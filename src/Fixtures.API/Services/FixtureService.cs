@@ -17,32 +17,50 @@ namespace Fixtures.API.Services
             _apiService = footballApiService;
         }
 
-        public async Task<List<Fixture>> GetFixturesAll()
+        public async Task<List<FixtureDto>> GetFixturesAll()
         {
             await SeedDatabase();
             // Pobranie wszystkich fixture'ów z bazy danych
-            return await _context.Fixtures.ToListAsync();
+            var fixtures = await _context.Fixtures.ToListAsync();
+
+            return await MapFixtureToFixtureDto(fixtures);
         }
 
-        public async Task<List<Fixture>> GetFixturesDate(DateTime dateFrom, DateTime dateTo)
+        public async Task<List<FixtureDto>> GetFixturesFromToDate(DateTime dateFrom, DateTime dateTo)
         {
             await SeedDatabase();
             // Pobranie fixture'ów na podstawie zakresu dat
-            return await _context.Fixtures
+
+            var fixtures = await _context.Fixtures
                 .Where(f => f.Date >= dateFrom && f.Date <= dateTo)
                 .ToListAsync();
+
+            return await MapFixtureToFixtureDto(fixtures);
         }
 
-        public async Task<List<Fixture>> GetFixturesTeam(int teamId)
+        public async Task<List<FixtureDto>> GetFixturesByTeam(int teamId)
         {
             await SeedDatabase();
             // Pobranie fixture'ów związanych z określoną drużyną
-            return await _context.Fixtures
+            var fixtures = await _context.Fixtures
                 .Where(f => f.HomeTeamId == teamId || f.AwayTeamId == teamId)
                 .ToListAsync();
 
-            
+            return await MapFixtureToFixtureDto(fixtures);
         }
+
+
+        public async Task<List<FixtureDto>> GetFixturesByRound(int round){
+            await SeedDatabase();
+
+            var fixtures = await _context.Fixtures
+                .Where(f => f.Round == round)
+                .ToListAsync();
+
+            return await MapFixtureToFixtureDto(fixtures);
+
+        }
+
 
         public async Task SaveApiFixturesToDatabase(List<APIFixtureDto> apiFixtures)
         {
@@ -87,6 +105,29 @@ namespace Fixtures.API.Services
 
                 await  this.SaveApiFixturesToDatabase(matches);
             }
+        }
+
+        private async Task<List<FixtureDto>> MapFixtureToFixtureDto(List<Fixture> fixtures){
+
+            List<FixtureDto> fixtureDtos = new List<FixtureDto>();
+
+            foreach(var fixture in fixtures){
+                var fixtureDto = new FixtureDto{
+                    MatchId = fixture.Id,
+                    Time = fixture.Time.ToShortTimeString(),
+                    Date = fixture.Date.ToShortDateString(),
+                    HomeTeamName = fixture.HomeTeamName,
+                    AwayTeamName = fixture.AwayTeamName,
+                    HomeTeamId = fixture.HomeTeamId,
+                    AwayTeamId = fixture.AwayTeamId,
+                    HomeTeamBadge = fixture.HomeTeamBadge,
+                    AwayTeamBadge = fixture.AwayTeamBadge,
+                    Round = fixture.Round,
+                };
+                fixtureDtos.Add(fixtureDto);
+            }
+
+            return fixtureDtos;
         }
     }
 }

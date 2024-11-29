@@ -72,11 +72,11 @@ namespace Fixtures.API.Controllers
 
         [HttpGet("fromToDate")]
 
-        public async Task<IActionResult> GetFromToDate([FromQuery] FixturesFromToDateDto fixturesFromToDateDto)
+        public async Task<IActionResult> GetFixturesFromToDate([FromQuery] FixturesFromToDateDtoRequest fixturesFromToDateDto)
         {
             try
             {
-                var matches = await _fixtureService.GetFixturesDate(fixturesFromToDateDto.DateFrom, fixturesFromToDateDto.DateTo);
+                var matches = await _fixtureService.GetFixturesFromToDate(fixturesFromToDateDto.DateFrom, fixturesFromToDateDto.DateTo);
 
                 if (matches == null || !matches.Any())
                 {
@@ -96,11 +96,34 @@ namespace Fixtures.API.Controllers
 
         [HttpGet("team")]
 
-        public async Task<IActionResult> GetTeam([FromQuery] FixturesTeamDto fixturesTeamDto)
+        public async Task<IActionResult> GetFixturesByTeam([FromQuery] FixturesTeamDtoRequest fixturesTeamDto)
         {
             try
             {
-                var matches = await _fixtureService.GetFixturesTeam(fixturesTeamDto.teamId);
+                var matches = await _fixtureService.GetFixturesByTeam(fixturesTeamDto.teamId);
+
+                if (matches == null || !matches.Any())
+                {
+                    return NotFound("No fixtures found.");
+                }
+
+                return Ok(matches);
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occurred: {ex.Message}");
+            }
+
+
+        }
+
+         [HttpGet("round")]
+         public async Task<IActionResult> GetFixturesByRound(int round)
+        {
+            try
+            {
+                var matches = await _fixtureService.GetFixturesByRound(round);
 
                 if (matches == null || !matches.Any())
                 {
