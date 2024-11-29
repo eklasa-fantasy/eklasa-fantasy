@@ -8,8 +8,8 @@ namespace Fixtures.API.Interfaces
     public interface IFixtureService
     {
         Task<List<FixtureDto>> GetFixturesAll();
-        Task<List<FixtureDto>> GetFixturesTeam(int teamId);
-        Task<List<FixtureDto>> GetFixturesDate(DateTime dateFrom, DateTime dateTo);
+        Task<List<FixtureDto>> GetFixturesByTeam(int teamId);
+        Task<List<FixtureDto>> GetFixturesFromToDate(DateTime dateFrom, DateTime dateTo);
         Task SaveApiFixturesToDatabase(List<APIFixtureDto> apiFixtures);
         Task SeedDatabase();
     }

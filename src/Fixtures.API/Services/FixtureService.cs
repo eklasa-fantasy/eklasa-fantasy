@@ -26,7 +26,7 @@ namespace Fixtures.API.Services
             return await MapFixtureToFixtureDto(fixtures);
         }
 
-        public async Task<List<FixtureDto>> GetFixturesDate(DateTime dateFrom, DateTime dateTo)
+        public async Task<List<FixtureDto>> GetFixturesFromToDate(DateTime dateFrom, DateTime dateTo)
         {
             await SeedDatabase();
             // Pobranie fixture'ów na podstawie zakresu dat
@@ -38,7 +38,7 @@ namespace Fixtures.API.Services
             return await MapFixtureToFixtureDto(fixtures);
         }
 
-        public async Task<List<FixtureDto>> GetFixturesTeam(int teamId)
+        public async Task<List<FixtureDto>> GetFixturesByTeam(int teamId)
         {
             await SeedDatabase();
             // Pobranie fixture'ów związanych z określoną drużyną
