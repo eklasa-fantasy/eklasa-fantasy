@@ -5,9 +5,9 @@ namespace Fixtures.API.Data
 {
     public class FixturesDbContext : DbContext
     {
-        public FixturesDbContext(DbContextOptions<FixturesDbContext> options)
-            : base(options)
+        public FixturesDbContext(DbContextOptions dbContextOptions) : base(dbContextOptions)
         {
+
         }
 
         public DbSet<Fixture> Fixtures { get; set; }
@@ -16,13 +16,6 @@ namespace Fixtures.API.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Fixture>(entity =>
-            {
-                entity.HasKey(f => f.Id);
-                entity.Property(f => f.HomeTeamName).IsRequired();
-                entity.Property(f => f.AwayTeamName).IsRequired();
-                // Dodaj inne wymagania i relacje, jeśli są potrzebne
-            });
         }
     }
 }

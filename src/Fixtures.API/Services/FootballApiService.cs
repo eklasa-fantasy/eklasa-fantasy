@@ -11,7 +11,7 @@ namespace Fixtures.API.Services
     {
         private static readonly HttpClient client = new HttpClient();
         string apiKey = Environment.GetEnvironmentVariable("API_KEY");
-
+        
 
         public async Task<List<APIFixtureDto>> GetFixturesAsync(string dateFrom, string dateTo)
         {
@@ -19,10 +19,9 @@ namespace Fixtures.API.Services
             try
             {
                 //List<APIFixtureDto> list = new List<APIFixtureDto>();
-                HttpResponseMessage response = await client.GetAsync($"https://apiv3.apifootball.com/?action=get_events&from={dateFrom}&to={dateTo}&league_id=153&APIkey={apiKey}");
+                HttpResponseMessage response = await client.GetAsync($"https://apiv3.apifootball.com/?action=get_events&from={dateFrom}&to={dateTo}&league_id=259&APIkey={apiKey}");
                 response.EnsureSuccessStatusCode(); // Rzuca wyjątek, jeśli kod odpowiedzi jest błędny
                 string responseBody = await response.Content.ReadAsStringAsync();
-
                 return await DeserializeFixturesAsync(responseBody);
 
             }
@@ -37,7 +36,7 @@ namespace Fixtures.API.Services
                 return null;
             }
 
-
+            
 
         }
 

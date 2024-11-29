@@ -17,6 +17,7 @@ namespace Fixtures.API.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    MatchId = table.Column<int>(type: "int", nullable: false),
                     Time = table.Column<DateTime>(type: "datetime2", nullable: false),
                     HomeTeamName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     AwayTeamName = table.Column<string>(type: "nvarchar(max)", nullable: false),
