@@ -14,7 +14,7 @@ namespace Results.API.Services
         {
             try
             {
-                HttpResponseMessage response = await client.GetAsync($"https://apiv3.apifootball.com/?action=get_events&from={dateFrom}&to={dateTo}&league_id=153&APIkey={apiKey}");
+                HttpResponseMessage response = await client.GetAsync($"https://apiv3.apifootball.com/?action=get_events&from={dateFrom}&to={dateTo}&league_id=259&APIkey={apiKey}");
                 response.EnsureSuccessStatusCode(); // Rzuca wyjątek, jeśli kod odpowiedzi jest błędny
                 string responseBody = await response.Content.ReadAsStringAsync();
 
