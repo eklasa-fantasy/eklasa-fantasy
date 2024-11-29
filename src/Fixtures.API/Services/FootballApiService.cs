@@ -11,7 +11,7 @@ namespace Fixtures.API.Services
     {
         private static readonly HttpClient client = new HttpClient();
         string apiKey = Environment.GetEnvironmentVariable("API_KEY");
-
+        
 
         public async Task<List<APIFixtureDto>> GetFixturesAsync(string dateFrom, string dateTo)
         {

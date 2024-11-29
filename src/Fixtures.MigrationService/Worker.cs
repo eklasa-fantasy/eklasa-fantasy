@@ -10,15 +10,13 @@ namespace Fixtures.MigrationService;
 
 public class Worker(
     IServiceProvider serviceProvider,
-    IHostApplicationLifetime hostApplicationLifetime,
-    IFootballApiService footballApiService,
-    IFixtureService fixtureService) : BackgroundService
+    IHostApplicationLifetime hostApplicationLifetime
+    ) : BackgroundService
 {
     public const string ActivitySourceName = "Migrations";
     private static readonly ActivitySource s_activitySource = new(ActivitySourceName);
 
-    private readonly IFootballApiService _footballApiService = footballApiService;
-    private readonly IFixtureService _fixtureService = fixtureService;
+    private readonly IServiceProvider _serviceProvider = serviceProvider;
 
     protected override async Task ExecuteAsync(CancellationToken cancellationToken)
     {
@@ -28,10 +26,12 @@ public class Worker(
         {
             using var scope = serviceProvider.CreateScope();
             var dbContext = scope.ServiceProvider.GetRequiredService<FixturesDbContext>();
+            var footballApiService = scope.ServiceProvider.GetRequiredService<IFootballApiService>();
+            var fixturesService = scope.ServiceProvider.GetRequiredService<IFixtureService>();
 
             await EnsureDatabaseAsync(dbContext, cancellationToken);
             await RunMigrationAsync(dbContext, cancellationToken);
-            await SeedDataAsync(dbContext, cancellationToken);
+            await SeedDataAsync(dbContext, cancellationToken, fixturesService, footballApiService);
         }
         catch (Exception ex)
         {
@@ -70,7 +70,11 @@ public class Worker(
         });
     }
 
-    protected async Task SeedDataAsync(FixturesDbContext dbContext, CancellationToken cancellationToken)
+    protected async Task SeedDataAsync(
+        FixturesDbContext dbContext, 
+        CancellationToken cancellationToken,
+        IFixtureService fixtureService,
+        IFootballApiService footballApiService)
     {
         string dateToday = DateTime.Now.Year.ToString() + "-" + DateTime.Now.Month.ToString() + "-" + DateTime.Now.Day.ToString();
         var strategy = dbContext.Database.CreateExecutionStrategy();
@@ -78,8 +82,8 @@ public class Worker(
         {
             // Seed the database
             await using var transaction = await dbContext.Database.BeginTransactionAsync(cancellationToken);
-            var apiFixtures = await _footballApiService.GetFixturesAsync(dateToday, "2025-06-01");
-            await _fixtureService.SaveApiFixturesToDatabase(apiFixtures);
+            var apiFixtures = await footballApiService.GetFixturesAsync(dateToday, "2025-06-01");
+            await fixtureService.SaveApiFixturesToDatabase(apiFixtures);
             await dbContext.SaveChangesAsync(cancellationToken);
             await transaction.CommitAsync(cancellationToken);
         });

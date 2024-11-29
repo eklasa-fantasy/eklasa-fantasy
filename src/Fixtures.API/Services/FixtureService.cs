@@ -45,14 +45,14 @@ namespace Fixtures.API.Services
                 {
                     var fixture = new Fixture
                     {
-                        Id = int.Parse(apiFixture.Id),
-                        Time = DateTime.Parse(apiFixture.Time),
-                        HomeTeamName = apiFixture.HomeTeamName,
-                        AwayTeamName = apiFixture.AwayTeamName,
-                        HomeTeamId = int.Parse(apiFixture.HomeTeamId),
-                        AwayTeamId = int.Parse(apiFixture.AwayTeamId),
-                        Date = DateTime.Parse(apiFixture.Date),
-                        Round = int.Parse(apiFixture.Round),
+                        Id = int.TryParse(apiFixture.Id, out var id) ? id : throw new FormatException("Invalid Id"),
+                        Time = DateTime.TryParse(apiFixture.Time, out var time) ? time : throw new FormatException("Invalid Time"),
+                        HomeTeamName = apiFixture.HomeTeamName ?? throw new ArgumentNullException(nameof(apiFixture.HomeTeamName)),
+                        AwayTeamName = apiFixture.AwayTeamName ?? throw new ArgumentNullException(nameof(apiFixture.AwayTeamName)),
+                        HomeTeamId = int.TryParse(apiFixture.HomeTeamId, out var homeTeamId) ? homeTeamId : throw new FormatException("Invalid HomeTeamId"),
+                        AwayTeamId = int.TryParse(apiFixture.AwayTeamId, out var awayTeamId) ? awayTeamId : throw new FormatException("Invalid AwayTeamId"),
+                        Date = DateTime.TryParse(apiFixture.Date, out var date) ? date : throw new FormatException("Invalid Date"),
+                        Round = int.TryParse(apiFixture.Round, out var round) ? round : throw new FormatException("Invalid Round"),
                         HomeTeamBadge = apiFixture.HomeTeamBadge,
                         AwayTeamBadge = apiFixture.AwayTeamBadge
                     };
