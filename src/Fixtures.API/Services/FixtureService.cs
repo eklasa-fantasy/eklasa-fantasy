@@ -49,6 +49,19 @@ namespace Fixtures.API.Services
             return await MapFixtureToFixtureDto(fixtures);
         }
 
+
+        public async Task<List<FixtureDto>> GetFixturesByRound(int round){
+            await SeedDatabase();
+
+            var fixtures = await _context.Fixtures
+                .Where(f => f.Round == round)
+                .ToListAsync();
+
+            return await MapFixtureToFixtureDto(fixtures);
+
+        }
+
+
         public async Task SaveApiFixturesToDatabase(List<APIFixtureDto> apiFixtures)
         {
             foreach (var apiFixture in apiFixtures)

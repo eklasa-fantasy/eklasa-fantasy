@@ -118,6 +118,29 @@ namespace Fixtures.API.Controllers
 
         }
 
+         [HttpGet("round")]
+         public async Task<IActionResult> GetFixturesByRound(int round)
+        {
+            try
+            {
+                var matches = await _fixtureService.GetFixturesByRound(round);
+
+                if (matches == null || !matches.Any())
+                {
+                    return NotFound("No fixtures found.");
+                }
+
+                return Ok(matches);
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occurred: {ex.Message}");
+            }
+
+
+        }
+
 
 
     }

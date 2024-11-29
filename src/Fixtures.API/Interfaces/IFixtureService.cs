@@ -10,6 +10,9 @@ namespace Fixtures.API.Interfaces
         Task<List<FixtureDto>> GetFixturesAll();
         Task<List<FixtureDto>> GetFixturesByTeam(int teamId);
         Task<List<FixtureDto>> GetFixturesFromToDate(DateTime dateFrom, DateTime dateTo);
+
+        Task<List<FixtureDto>> GetFixturesByRound(int round);
+
         Task SaveApiFixturesToDatabase(List<APIFixtureDto> apiFixtures);
         Task SeedDatabase();
     }
