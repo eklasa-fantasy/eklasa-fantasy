@@ -5,9 +5,9 @@ namespace Fixtures.API.Data
 {
     public class FixturesDbContext : DbContext
     {
-        public FixturesDbContext(DbContextOptions<FixturesDbContext> options)
-            : base(options)
+        public FixturesDbContext(DbContextOptions dbContextOptions) : base(dbContextOptions)
         {
+
         }
 
         public DbSet<Fixture> Fixtures { get; set; }
