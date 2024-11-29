@@ -66,6 +66,9 @@ namespace Results.API.Services
         public async Task<List<ResultDto>> GetLiveScores(){
             // await SeedDatabase();
 
+            // var results = await _context.Results
+               // .Where(r => r.isMatchLive == true)
+              //  .ToListAsync();
             return null;
         }
 
