@@ -37,6 +37,13 @@ var webApp = builder
 //identityApi.WithEnvironment("WebAppClient", webApp.GetEndpoint(launchProfileName));
 
 
+builder.AddProject<Projects.Fixtures_MigrationService>("fixtures-migrationservice");
+
+
+
+//identityApi.WithEnvironment("WebAppClient", webApp.GetEndpoint(launchProfileName));
+
+
 builder.Build().Run();
 
 
