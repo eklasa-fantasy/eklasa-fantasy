@@ -9,6 +9,8 @@ var id_sql = builder.AddSqlServer("id-sql")
 var fixt_sql = builder.AddSqlServer("fixt-sql")
                 .AddDatabase("fixt-sqldata");
 
+var res_sql = builder.AddSqlServer("res-sql")
+                .AddDatabase("res-sqldata");
 
 
 var launchProfileName = ShouldUseHttpForEndpoints() ? "http" : "https";
@@ -29,6 +31,8 @@ builder.AddProject<Projects.Identity_MigrationService>("identity-migrations")
     .WithReference(id_sql);
 builder.AddProject<Projects.Fixtures_MigrationService>("fixtures-migrations")
     .WithReference(fixt_sql);
+builder.AddProject<Projects.Results_MigrationService>("results-migrations")
+    .WithReference(res_sql);
 
 var identityEndpoint = identityApi.GetEndpoint(launchProfileName);
 
@@ -46,8 +50,6 @@ var webApp = builder
 
 //identityApi.WithEnvironment("WebAppClient", webApp.GetEndpoint(launchProfileName));
 
-
-builder.AddProject<Projects.Results_MigrationService>("results-migrationservice");
 
 
 
