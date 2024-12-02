@@ -21,9 +21,11 @@ var identityApi = builder.AddProject<Projects.Identity_API>("identity-api", laun
 ;
 
 var fixturesApi = builder.AddProject<Projects.Fixtures_API>("fixtures-api", launchProfileName)
+    .WithReference(fixt_sql)
 ;
 
 var resultsApi = builder.AddProject<Projects.Results_API>("results-api")
+    .WithReference(res_sql)
 ;
 
 //Migrations

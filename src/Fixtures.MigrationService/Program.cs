@@ -15,7 +15,7 @@ builder.Services.AddHostedService<Worker>();
 builder.Services.AddOpenTelemetry()
     .WithTracing(tracing => tracing.AddSource(Worker.ActivitySourceName));
 
-builder.AddSqlServerDbContext<FixturesDbContext>("fixt_sqldata");
+builder.AddSqlServerDbContext<FixturesDbContext>("fixt-sqldata");
 
 var host = builder.Build();
 host.Run();
