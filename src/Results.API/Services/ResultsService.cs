@@ -35,6 +35,8 @@ namespace Results.API.Services
 
         public async Task<List<ResultDto>> GetResultsFromToDate(DateTime dateFrom, DateTime dateTo)
         {
+            await SeedDatabase();
+
             var results = await _context.Results
                 .Where(r => r.Date >= dateFrom && r.Date <= dateTo)
                 .Include(r => r.GoalScorers)
@@ -50,6 +52,8 @@ namespace Results.API.Services
 
         public async Task<List<ResultDto>> GetResultsByTeam(int teamId)
         {
+            await SeedDatabase();
+
             var results = await _context.Results
                 .Where(r => r.HomeTeamId == teamId || r.AwayTeamId == teamId)
                 .Include(r => r.GoalScorers)
@@ -65,6 +69,8 @@ namespace Results.API.Services
 
         public async Task<List<ResultDto>> GetResultsByRound(int round)
         {
+            await SeedDatabase();
+
             var results = await _context.Results
                 .Where(r => r.Round == round)
                 .Include(r => r.GoalScorers)
@@ -80,6 +86,8 @@ namespace Results.API.Services
 
         public async Task<List<ResultDto>> GetLiveScores()
         {
+            await SeedDatabase();
+
             var results = await _context.Results
                 .Where(r => r.isMatchLive)
                 .Include(r => r.GoalScorers)
@@ -98,7 +106,7 @@ namespace Results.API.Services
             if (!_context.Results.Any())
             {
 
-                var resultDtos = await _apiService.GetResultsAsync("2024-12-30", $"{DateTime.Now:yyyy-MM-dd}");
+                var resultDtos = await _apiService.GetResultsAsync("2024-07-19", $"{DateTime.Now:yyyy-MM-dd}");
 
                 await this.SaveApiFixturesToDatabase(resultDtos);
             }
@@ -124,7 +132,7 @@ namespace Results.API.Services
                         AwayTeamBadge = apiResult.AwayTeamBadge,
                         HomeTeamScore = int.TryParse(apiResult.HomeTeamScore, out var homeTeamScore) ? homeTeamScore : throw new FormatException("Invalid HomeTeamScore"),
                         AwayTeamScore = int.TryParse(apiResult.AwayTeamScore, out var awayTeamScore) ? awayTeamScore : throw new FormatException("Invalid AwayTeamScore"),
-                        isMatchLive = bool.TryParse(apiResult.isMatchLive, out var isMatchLive) ? isMatchLive : throw new FormatException("Invalid isMatchLive"),
+                        isMatchLive = ((int.TryParse(apiResult.isMatchLive, out int isMatchLive) ? isMatchLive : throw new FormatException("Invalid isMatchLive")) == 1) ? true : false,
                         GoalScorers = MapGoalscorerDtoToModel(apiResult),
 
                         Cards = MapCardsDtoToModel(apiResult),
