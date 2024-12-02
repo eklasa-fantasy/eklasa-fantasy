@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Fixtures.API.Dtos
 {
-    public class FixturesFromToDateDto
+    public class FixturesFromToDateDtoRequest
     {
         [DataType(DataType.Date), DisplayFormat( DataFormatString="{0:yyyy-MM-dd}", ApplyFormatInEditMode=true )]
         public DateTime DateFrom {get; set;}
