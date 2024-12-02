@@ -1,5 +1,7 @@
+using Fixtures.API.Data;
 using Fixtures.API.Interfaces;
 using Fixtures.API.Services;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +11,10 @@ DotNetEnv.Env.Load();
 // Add services to the container.
 
 builder.Services.AddControllers();
+
+builder.Services.AddDbContext<FixturesDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("sqldata")));
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

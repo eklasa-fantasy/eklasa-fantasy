@@ -1,17 +1,21 @@
-using Identity.API.Data;
-using Identity.MigrationService;
 using Fixtures.API.Data;
+using Fixtures.API.Interfaces;
+using Fixtures.API.Services;
+using Fixtures.MigrationService;
 
 var builder = Host.CreateApplicationBuilder(args);
 
 builder.AddServiceDefaults();
+
+// builder.Services.AddScoped<IFootballApiService, FootballApiService>();
+// builder.Services.AddScoped<IFixtureService, FixtureService>();
+
 builder.Services.AddHostedService<Worker>();
 
 builder.Services.AddOpenTelemetry()
     .WithTracing(tracing => tracing.AddSource(Worker.ActivitySourceName));
 
-builder.AddSqlServerDbContext<ApplicationDbContext>("id-sqldata");
-//builder.AddSqlServerDbContext<FixturesDbContext>("sqldata");
+builder.AddSqlServerDbContext<FixturesDbContext>("sqldata");
 
 var host = builder.Build();
 host.Run();

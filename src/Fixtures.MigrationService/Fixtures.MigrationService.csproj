@@ -4,7 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>dotnet-Identity.MigrationService-ab4d279a-40fc-47db-976b-22c5c3d839fc</UserSecretsId>
+    <UserSecretsId>dotnet-Fixtures.MigrationService-2590410e-faa1-4973-bd92-61c5925283cd</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,7 +13,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\eklasaFantasy.ServiceDefaults\eklasaFantasy.ServiceDefaults.csproj" />
-    <ProjectReference Include="..\Identity.API\Identity.API.csproj" />
     <ProjectReference Include="..\Fixtures.API\Fixtures.API.csproj" />
   </ItemGroup>
 </Project>
