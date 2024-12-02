@@ -13,7 +13,7 @@ DotNetEnv.Env.Load();
 builder.Services.AddControllers();
 
 builder.Services.AddDbContext<FixturesDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("sqldata")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("fixt-sqldata")));
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
