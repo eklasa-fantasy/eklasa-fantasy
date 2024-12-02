@@ -6,8 +6,8 @@ var builder = DistributedApplication.CreateBuilder(args);
 var id_sql = builder.AddSqlServer("id-sql")
                  .AddDatabase("id-sqldata");
 
-var sql = builder.AddSqlServer("sql")
-                .AddDatabase("sqldata");
+var fixt_sql = builder.AddSqlServer("fixt-sql")
+                .AddDatabase("fixt-sqldata");
 
 
 
@@ -28,7 +28,7 @@ var resultsApi = builder.AddProject<Projects.Results_API>("results-api")
 builder.AddProject<Projects.Identity_MigrationService>("identity-migrations")
     .WithReference(id_sql);
 builder.AddProject<Projects.Fixtures_MigrationService>("fixtures-migrations")
-    .WithReference(sql);
+    .WithReference(fixt_sql);
 
 var identityEndpoint = identityApi.GetEndpoint(launchProfileName);
 
