@@ -122,7 +122,7 @@ namespace Results.API.Services
                     TimeReceived = c.TimeReceived,
                     HomeFault = c.HomeFault,
                     AwayFault = c.AwayFault,
-                    Card = c.Card
+                    Card = c.CardType
                 }).ToList(),
                 Substitutions = result.Substitutions != null ? new SubsDto
                 {
