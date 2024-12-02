@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fixtures.MigrationService",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Results.API", "src\Results.API\Results.API.csproj", "{7B5E9F5D-EA56-46B6-B3FB-9F5DA36415AC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Results.MigrationService", "src\Results.MigrationService\Results.MigrationService.csproj", "{CA530725-E1BA-4706-A707-859CD1307720}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +63,10 @@ Global
 		{7B5E9F5D-EA56-46B6-B3FB-9F5DA36415AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B5E9F5D-EA56-46B6-B3FB-9F5DA36415AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B5E9F5D-EA56-46B6-B3FB-9F5DA36415AC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA530725-E1BA-4706-A707-859CD1307720}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA530725-E1BA-4706-A707-859CD1307720}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA530725-E1BA-4706-A707-859CD1307720}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA530725-E1BA-4706-A707-859CD1307720}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -74,5 +80,6 @@ Global
 		{98609C18-0206-494D-AF36-82CFBFC57162} = {9FAFB633-B68F-4437-AF11-44EC7D01DEEB}
 		{F33892B6-7A00-4859-8CE8-A9A2F802546E} = {9FAFB633-B68F-4437-AF11-44EC7D01DEEB}
 		{7B5E9F5D-EA56-46B6-B3FB-9F5DA36415AC} = {9FAFB633-B68F-4437-AF11-44EC7D01DEEB}
+		{CA530725-E1BA-4706-A707-859CD1307720} = {9FAFB633-B68F-4437-AF11-44EC7D01DEEB}
 	EndGlobalSection
 EndGlobal

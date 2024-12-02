@@ -47,6 +47,13 @@ var webApp = builder
 //identityApi.WithEnvironment("WebAppClient", webApp.GetEndpoint(launchProfileName));
 
 
+builder.AddProject<Projects.Results_MigrationService>("results-migrationservice");
+
+
+
+//identityApi.WithEnvironment("WebAppClient", webApp.GetEndpoint(launchProfileName));
+
+
 builder.Build().Run();
 
 
