@@ -1,8 +1,8 @@
 
 
-namespace Results.API.Models    
+namespace Results.API.Models
 {
-    public class SubsAway : BaseEntity
+    public class SubHome : BaseEntity
     {
         public string Time {get; set;}
         public string Substitution {get; set;}

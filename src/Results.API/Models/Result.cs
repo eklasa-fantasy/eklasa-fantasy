@@ -19,7 +19,7 @@ namespace Results.API.Models
         public int AwayTeamScore { get; set; }
         public bool isMatchLive { get; set; } //Bardzo wazne
         public List<Goalscorer>? GoalScorers { get; set; }
-        public List<Cards>? Cards { get; set; }
+        public List<Card>? Cards { get; set; }
         public Subs? Substitutions { get; set; }
     }
 }
