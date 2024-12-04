@@ -31,7 +31,13 @@ namespace Results.API.Services
                 .ToListAsync();
 
             //TODO sprawdzenie czy w bazie danych istnieja juz rekordy odnoszace sie do druzyn w tabeli, jesli nie to inicjuje tabele ligowa
+            //if _context.Table.... nie istnieje
             var teamEntries = await InitTable();
+
+            //else var teamEntries = await _context.Table... teams
+
+
+
 
             foreach (var result in results)
             {
