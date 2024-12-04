@@ -4,6 +4,8 @@ namespace Results.API.Dtos
     {
         public int TeamId { get; set; }
 
+        public string TeamBadge { get; set; }
+
         public string TeamName { get; set; }
 
         public int Played { get; set; }
