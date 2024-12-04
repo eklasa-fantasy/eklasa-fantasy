@@ -13,6 +13,8 @@ namespace Results.API.Data
         public DbSet<SubAway> SubsAway { get; set; }
         public DbSet<SubHome> SubsHome { get; set; }
         public DbSet<Subs> Subs { get; set; }
+        public DbSet<Table> Tables {get; set;}
+        public DbSet<TableTeam> TableTeams {get; set;}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

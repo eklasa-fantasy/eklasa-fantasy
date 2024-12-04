@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Results.API.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialResultsDb : Migration
+    public partial class InitialMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -21,6 +21,18 @@ namespace Results.API.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Subs", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Tables",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Tables", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -95,6 +107,35 @@ namespace Results.API.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "TableTeams",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TeamId = table.Column<int>(type: "int", nullable: false),
+                    TeamBadge = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TeamName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Played = table.Column<int>(type: "int", nullable: false),
+                    Wins = table.Column<int>(type: "int", nullable: false),
+                    Loses = table.Column<int>(type: "int", nullable: false),
+                    Draws = table.Column<int>(type: "int", nullable: false),
+                    Points = table.Column<int>(type: "int", nullable: false),
+                    GoalsF = table.Column<int>(type: "int", nullable: false),
+                    GoalsA = table.Column<int>(type: "int", nullable: false),
+                    GoalsDiff = table.Column<int>(type: "int", nullable: false),
+                    TableId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TableTeams", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_TableTeams_Tables_TableId",
+                        column: x => x.TableId,
+                        principalTable: "Tables",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Cards",
                 columns: table => new
                 {
@@ -164,6 +205,11 @@ namespace Results.API.Migrations
                 name: "IX_SubsHome_SubsId",
                 table: "SubsHome",
                 column: "SubsId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TableTeams_TableId",
+                table: "TableTeams",
+                column: "TableId");
         }
 
         /// <inheritdoc />
@@ -182,7 +228,13 @@ namespace Results.API.Migrations
                 name: "SubsHome");
 
             migrationBuilder.DropTable(
+                name: "TableTeams");
+
+            migrationBuilder.DropTable(
                 name: "Results");
+
+            migrationBuilder.DropTable(
+                name: "Tables");
 
             migrationBuilder.DropTable(
                 name: "Subs");

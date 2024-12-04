@@ -13,12 +13,15 @@ namespace Results.API.Controllers
         private readonly IFootballApiService _footballApiService;
         private readonly IResultsService _resultsService;
 
+        private readonly ITableService _tableService;
 
-        public ResultsController(IFootballApiService footballApiService, IResultsService resultsService)
+
+        public ResultsController(IFootballApiService footballApiService, IResultsService resultsService, ITableService tableService)
         {
 
             _footballApiService = footballApiService;
             _resultsService = resultsService;
+            _tableService = tableService;
 
         }
 
@@ -40,15 +43,16 @@ namespace Results.API.Controllers
 
                 return Ok(results);
 
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 return StatusCode(500, $"An error occurred: {ex.Message}");
             }
 
         }
 
-         [HttpGet("all")]
-          public async Task<IActionResult> GetAll()
+        [HttpGet("all")]
+        public async Task<IActionResult> GetAll()
         {
             try
             {
@@ -71,7 +75,7 @@ namespace Results.API.Controllers
         }
 
         [HttpGet("fromToDate")]
-         public async Task<IActionResult> GetResultsFromToDate([FromQuery] ResultsFromToDateDtoRequest resultsFromToDateDto)
+        public async Task<IActionResult> GetResultsFromToDate([FromQuery] ResultsFromToDateDtoRequest resultsFromToDateDto)
         {
             try
             {
@@ -116,8 +120,8 @@ namespace Results.API.Controllers
 
         }
 
-         [HttpGet("round")]
-           public async Task<IActionResult> GetResultsByRound([FromQuery] ResultsRoundDtoRequest roundDto)
+        [HttpGet("round")]
+        public async Task<IActionResult> GetResultsByRound([FromQuery] ResultsRoundDtoRequest roundDto)
         {
             try
             {
@@ -161,6 +165,26 @@ namespace Results.API.Controllers
             }
 
 
+        }
+
+        [HttpGet("table")]
+        public async Task<IActionResult> GetTable()
+        {
+            try
+            {
+                var table = await _tableService.CalculateTable();
+
+                if (table == null || table.Teams.Count() != 18)
+                {
+                    return NotFound("Error occured while creating the table.");
+                }
+
+                return Ok(table);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occurred: {ex.Message}");
+            }
         }
 
 
