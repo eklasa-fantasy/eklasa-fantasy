@@ -1,0 +1,27 @@
+.dashboard-container {
+  display: flex;
+  flex-direction: row; 
+  gap: 20px; 
+  margin: 0 1% 0 1%;
+  opacity: 0.8;
+}
+
+.section {
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  flex: 1; 
+  background-color: #333;
+}
+
+h2 {
+  font-family: 'Arial', sans-serif;
+  color: white; 
+  margin-top: 0;
+  margin-bottom: 2%;
+}
+
+.section p {
+  font-family: 'Verdana', sans-serif; 
+  color: #333; 
+}

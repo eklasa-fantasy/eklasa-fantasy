@@ -1,0 +1,24 @@
+/*.not-logged-in-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; 
+    margin-top: 0.5%; 
+    width: 100%; 
+  }
+  
+  .not-logged-button {
+    background-color: #555;
+    color: white;
+    border: none;
+    padding: 0.5% 1%;
+    margin: 0 1%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: auto;
+  }
+  
+  .not-logged-button:hover {
+    background-color: #777;
+  }
+  */
