@@ -84,47 +84,6 @@ namespace Results.API.Services
         }
 
 
-        public void CalculateTeamStatsAsync(List<TableTeamDto> teamEntries, Result result)
-        {
-
-            var teamHome = teamEntries.FirstOrDefault(t => t.TeamId == result.HomeTeamId);
-            var teamAway = teamEntries.FirstOrDefault(t => t.TeamId == result.AwayTeamId);
-            teamHome.Played += 1;
-            teamAway.Played += 1;
-
-            teamHome.GoalsF += result.HomeTeamScore;
-            teamHome.GoalsA += result.AwayTeamScore;
-            teamHome.GoalsDiff = teamHome.GoalsF - teamHome.GoalsA;
-
-            teamAway.GoalsF += result.AwayTeamScore;
-            teamAway.GoalsA += result.HomeTeamScore;
-            teamAway.GoalsDiff = teamAway.GoalsF - teamAway.GoalsA;
-
-            if (result.HomeTeamScore > result.AwayTeamScore)
-            {
-                teamHome.Points += 3;
-                teamHome.Wins += 1;
-
-                teamAway.Loses += 1;
-            }
-            else if (result.HomeTeamScore < result.AwayTeamScore)
-            {
-                teamAway.Points += 3;
-                teamAway.Wins += 1;
-
-                teamHome.Loses += 1;
-            }
-            else
-            {
-                teamHome.Points += 1;
-                teamAway.Points += 1;
-
-                teamHome.Draws += 1;
-                teamAway.Draws += 1;
-            }
-
-        }
-
         public async Task CalculateTeamModelsStatsAsync(List<TableTeam> teamEntries, Result result)
         {
 
@@ -163,33 +122,6 @@ namespace Results.API.Services
                 teamHome.Draws += 1;
                 teamAway.Draws += 1;
             }
-        }
-
-        public async Task<List<TableTeamDto>> InitTable()
-        {
-            var teams = await _apiService.GetTeamIds();
-
-            var teamEntries = new List<TableTeamDto>();
-
-            foreach (var team in teams)
-            {
-                var teamEntry = new TableTeamDto
-                {
-                    TeamId = int.TryParse(team.TeamId, out var teamId) ? teamId : throw new FormatException("Invalid Id"),
-                    TeamBadge = team.TeamBadge,
-                    TeamName = team.TeamName,
-                    Played = 0,
-                    Wins = 0,
-                    Loses = 0,
-                    Draws = 0,
-                    Points = 0,
-                    GoalsF = 0,
-                    GoalsA = 0,
-                    GoalsDiff = 0
-                };
-                teamEntries.Add(teamEntry);
-            }
-            return teamEntries;
         }
 
         public async Task<List<TableTeam>> InitTableModels()
