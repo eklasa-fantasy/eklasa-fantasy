@@ -18,8 +18,7 @@ export class ResultsComponent implements OnInit {
   }
 
   fetchResults(): void {
-    //this.http.get<any[]>('https://localhost:7132/api/fixtures/footballapi')
-    this.http.get<any[]>('http://localhost:3001/results') 
+    this.http.get<any[]>('https://localhost:7097/api/results/all') 
       .subscribe(
         (data) => {
           this.results = data;

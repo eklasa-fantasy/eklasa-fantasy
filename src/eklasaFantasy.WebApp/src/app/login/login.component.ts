@@ -19,7 +19,7 @@ export class LoginComponent {
     private router: Router // Import routera do przekierowania
   ) {
     this.loginForm = this.fb.group({
-      emailAddress: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
     });
   }

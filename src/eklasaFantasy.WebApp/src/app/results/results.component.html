@@ -1,36 +1,38 @@
 <div class="results-container">
-    <div *ngFor="let result of results; let i = index" class="result-card">
-      <!-- Górna część widoczna zawsze -->
-      <div class="result-summary" (click)="toggleDetails(i)">
-        <div class="team-row">
-          <div class="team-info home-team">
-            <img [src]="result.team_home_badge" alt="Home Team Badge" class="team-badge">
-            <span class="team-name">{{ result.match_hometeam_name }}</span>
-          </div>
-          <div class="score">{{ result.match_hometeam_score }} : {{ result.match_awayteam_score }}</div>
-          <div class="team-info away-team">
-            <span class="team-name">{{ result.match_awayteam_name }}</span>
-            <img [src]="result.team_away_badge" alt="Away Team Badge" class="team-badge">
-          </div>
+  <div *ngFor="let result of results; let i = index" class="result-card">
+    <div class="result-summary" (click)="toggleDetails(i)">
+      <div class="team-row">
+        <div class="team-info home-team">
+          <img [src]="result.homeTeamBadge" alt="Home Team Badge" class="team-badge">
+          <span class="team-name">{{ result.homeTeamName }}</span>
         </div>
-        <div class="match-time">{{ result.match_date }} {{ result.match_time }}</div>
+        <div class="score">{{ result.homeTeamScore }} : {{ result.awayTeamScore }}</div>
+        <div class="team-info away-team">
+          <span class="team-name">{{ result.awayTeamName }}</span>
+          <img [src]="result.awayTeamBadge" alt="Away Team Badge" class="team-badge">
+        </div>
       </div>
-  
-      <!-- Szczegóły rozwijane po kliknięciu -->
-      <div *ngIf="expanded[i]" class="result-details">
-        <h4>Strzelcy goli</h4>
-        <ul>
-          <li *ngFor="let scorer of result.goalscorer">
-            {{ scorer.time }} - {{ scorer.scorer }} ({{ scorer.team }})
-          </li>
-        </ul>
-        <h4>Kartki</h4>
-        <ul>
-          <li *ngFor="let card of result.cards">
-            {{ card.time }} - {{ card.player }} ({{ card.team }}) - {{ card.card }}
-          </li>
-        </ul>
-      </div>
+      <div class="match-time">{{ result.date }} {{ result.time }}</div>
+    </div>
+
+    <div *ngIf="expanded[i]" class="result-details">
+      <h4>Strzelcy goli</h4>
+      <ul>
+        <li *ngFor="let scorer of result.goalScorers">
+          {{ scorer.timeScored }}' - 
+          {{ scorer.homeScorer || scorer.awayScorer }} 
+          ({{ scorer.homeScorer ? result.homeTeamName : result.awayTeamName }})
+        </li>
+      </ul>
+      <h4>Kartki</h4>
+      <ul>
+        <li *ngFor="let card of result.cards">
+          {{ card.timeReceived }}' - 
+          {{ card.homeFault || card.awayFault }} 
+          ({{ card.homeFault ? result.homeTeamName : result.awayTeamName }}) - 
+          {{ card.card }}
+        </li>
+      </ul>
     </div>
   </div>
-  
+</div>

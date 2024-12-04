@@ -20,13 +20,13 @@ export class MatchListComponent implements OnInit {
     this.matchService.getMatches().subscribe(
       (data) => {
         this.matches = data.map(match => ({
-          match_time: match.match_time,
-          match_hometeam_name: match.match_hometeam_name,
-          match_awayteam_name: match.match_awayteam_name,
-          match_date: match.match_date,
-          match_round: match.match_round,
-          team_home_badge: match.team_home_badge,
-          team_away_badge: match.team_away_badge
+          match_time: match.time,
+          match_hometeam_name: match.homeTeamName,
+          match_awayteam_name: match.awayTeamName,
+          match_date: match.date,
+          match_round: match.round,
+          team_home_badge: match.homeTeamBadge,
+          team_away_badge: match.awayTeamBadge
         }));
       },
       (error) => {
