@@ -45,10 +45,10 @@ namespace Results.API.Services
 
             table.Teams.Sort((t1, t2) =>
             {
-                int pointComparison = t1.Points.CompareTo(t2.Points);
+                int pointComparison = t2.Points.CompareTo(t1.Points);
 
                 if(pointComparison == 0){
-                    return t1.GoalsDiff.CompareTo(t2.GoalsDiff);
+                    return t2.GoalsDiff.CompareTo(t1.GoalsDiff);
                 }
                 return pointComparison;
             });
