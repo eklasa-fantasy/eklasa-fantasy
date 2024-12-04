@@ -21,6 +21,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IFootballApiService, FootballApiService>();
 builder.Services.AddScoped<IResultsService, ResultsService>();
+builder.Services.AddScoped<ITableService, TableService>();
 
 var app = builder.Build();
 

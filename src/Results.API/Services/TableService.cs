@@ -38,9 +38,20 @@ namespace Results.API.Services
                 CalculateTeamStatsAsync(teamEntries, result);
             }
 
-            var table = new TableDto{
+            var table = new TableDto
+            {
                 Teams = teamEntries
             };
+
+            table.Teams.Sort((t1, t2) =>
+            {
+                int pointComparison = t1.Points.CompareTo(t2.Points);
+
+                if(pointComparison == 0){
+                    return t1.GoalsDiff.CompareTo(t2.GoalsDiff);
+                }
+                return pointComparison;
+            });
 
             return table;
 
@@ -50,40 +61,43 @@ namespace Results.API.Services
         public void CalculateTeamStatsAsync(List<TableTeamDto> teamEntries, Result result)
         {
 
-                var teamHome = teamEntries.FirstOrDefault(t => t.TeamId == result.HomeTeamId);
-                var teamAway = teamEntries.FirstOrDefault(t => t.TeamId == result.AwayTeamId);
-                teamHome.Played += 1;
-                teamAway.Played += 1;
+            var teamHome = teamEntries.FirstOrDefault(t => t.TeamId == result.HomeTeamId);
+            var teamAway = teamEntries.FirstOrDefault(t => t.TeamId == result.AwayTeamId);
+            teamHome.Played += 1;
+            teamAway.Played += 1;
 
-                teamHome.GoalsF += result.HomeTeamScore;
-                teamHome.GoalsA += result.AwayTeamScore;
-                teamHome.GoalsDiff = teamHome.GoalsDiff + teamHome.GoalsF - teamHome.GoalsA;
+            teamHome.GoalsF += result.HomeTeamScore;
+            teamHome.GoalsA += result.AwayTeamScore;
+            teamHome.GoalsDiff = teamHome.GoalsF - teamHome.GoalsA;
 
-                teamAway.GoalsF += result.AwayTeamScore;
-                teamAway.GoalsA += result.HomeTeamScore;
-                teamAway.GoalsDiff = teamAway.GoalsDiff + teamAway.GoalsF - teamAway.GoalsA;
+            teamAway.GoalsF += result.AwayTeamScore;
+            teamAway.GoalsA += result.HomeTeamScore;
+            teamAway.GoalsDiff = teamAway.GoalsF - teamAway.GoalsA;
 
-                if(result.HomeTeamScore > result.AwayTeamScore){
-                    teamHome.Points += 3;
-                    teamHome.Wins += 1;
-                    
-                    teamAway.Loses += 1;
-                }
-                else if( result.HomeTeamScore < result.AwayTeamScore){
-                    teamAway.Points += 3;
-                    teamAway.Wins += 1;
-                    
-                    teamHome.Loses += 1;
-                }
-                else{
-                    teamHome.Points += 1;
-                    teamAway.Points += 1;
+            if (result.HomeTeamScore > result.AwayTeamScore)
+            {
+                teamHome.Points += 3;
+                teamHome.Wins += 1;
 
-                    teamHome.Draws += 1;
-                    teamAway.Draws += 1;
-                }
+                teamAway.Loses += 1;
+            }
+            else if (result.HomeTeamScore < result.AwayTeamScore)
+            {
+                teamAway.Points += 3;
+                teamAway.Wins += 1;
 
-            
+                teamHome.Loses += 1;
+            }
+            else
+            {
+                teamHome.Points += 1;
+                teamAway.Points += 1;
+
+                teamHome.Draws += 1;
+                teamAway.Draws += 1;
+            }
+
+
         }
 
         public async Task<List<TableTeamDto>> InitTable()
