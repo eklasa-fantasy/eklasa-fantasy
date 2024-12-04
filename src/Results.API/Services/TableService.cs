@@ -24,7 +24,7 @@ namespace Results.API.Services
 
         public async Task<TableDto> CalculateTable()
         {       
-            if(!await _context.Tables.AnyAsync()){
+            if(!await _context.Tables.AnyAsync() || !await _context.TableTeams.AnyAsync()){
                 var results = await _context.Results
                     .ToListAsync();
 
@@ -36,7 +36,7 @@ namespace Results.API.Services
                 }
 
                 foreach (var team in teamEntries){
-                    await _context.AddAsync(team);
+                    await _context.TableTeams.AddAsync(team);
                 }
 
                 await _context.SaveChangesAsync();
@@ -84,25 +84,29 @@ namespace Results.API.Services
             }else{
                 var table = await _context.Tables.FirstAsync();
 
-                var tableDto = new TableDto 
-                {
-                    Teams = table.Teams.Select(team => new TableTeamDto
+                if(table == null || table.Teams == null){
+                    return null;
+                }else{
+                    var tableDto = new TableDto 
                     {
-                        TeamId = team.TeamId,
-                        TeamBadge = team.TeamBadge,
-                        TeamName = team.TeamName,
-                        Played = team.Played,
-                        Wins = team.Wins,
-                        Loses = team.Loses,
-                        Draws = team.Draws,
-                        Points = team.Points,
-                        GoalsF = team.GoalsF,
-                        GoalsA = team.GoalsA,
-                        GoalsDiff = team.GoalsDiff
-                    }).ToList()
-                };
+                        Teams = table.Teams.Select(team => new TableTeamDto
+                        {
+                            TeamId = team.TeamId,
+                            TeamBadge = team.TeamBadge,
+                            TeamName = team.TeamName,
+                            Played = team.Played,
+                            Wins = team.Wins,
+                            Loses = team.Loses,
+                            Draws = team.Draws,
+                            Points = team.Points,
+                            GoalsF = team.GoalsF,
+                            GoalsA = team.GoalsA,
+                            GoalsDiff = team.GoalsDiff
+                        }).ToList()
+                    };
 
-                return tableDto;
+                    return tableDto;
+                }
             }
 
 
