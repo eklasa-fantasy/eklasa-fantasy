@@ -12,8 +12,8 @@ using Results.API.Data;
 namespace Results.API.Migrations
 {
     [DbContext(typeof(ResultsDbContext))]
-    [Migration("20241202184758_InitialResultsDb")]
-    partial class InitialResultsDb
+    [Migration("20241204190511_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -221,6 +221,72 @@ namespace Results.API.Migrations
                     b.ToTable("Subs");
                 });
 
+            modelBuilder.Entity("Results.API.Models.Table", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Tables");
+                });
+
+            modelBuilder.Entity("Results.API.Models.TableTeam", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Draws")
+                        .HasColumnType("int");
+
+                    b.Property<int>("GoalsA")
+                        .HasColumnType("int");
+
+                    b.Property<int>("GoalsDiff")
+                        .HasColumnType("int");
+
+                    b.Property<int>("GoalsF")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Loses")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Played")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Points")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("TableId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TeamBadge")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("TeamId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TeamName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Wins")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TableId");
+
+                    b.ToTable("TableTeams");
+                });
+
             modelBuilder.Entity("Results.API.Models.Card", b =>
                 {
                     b.HasOne("Results.API.Models.Result", null)
@@ -258,6 +324,13 @@ namespace Results.API.Migrations
                         .HasForeignKey("SubsId");
                 });
 
+            modelBuilder.Entity("Results.API.Models.TableTeam", b =>
+                {
+                    b.HasOne("Results.API.Models.Table", null)
+                        .WithMany("Teams")
+                        .HasForeignKey("TableId");
+                });
+
             modelBuilder.Entity("Results.API.Models.Result", b =>
                 {
                     b.Navigation("Cards");
@@ -270,6 +343,11 @@ namespace Results.API.Migrations
                     b.Navigation("AwaySubs");
 
                     b.Navigation("HomeSubs");
+                });
+
+            modelBuilder.Entity("Results.API.Models.Table", b =>
+                {
+                    b.Navigation("Teams");
                 });
 #pragma warning restore 612, 618
         }
