@@ -3,6 +3,7 @@ using Results.API.Dtos;
 using Results.API.Interfaces;
 using Results.API.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace Results.API.Services
 {
@@ -29,19 +30,60 @@ namespace Results.API.Services
             var results = await _context.Results
                 .ToListAsync();
 
+            //TODO sprawdzenie czy w bazie danych istnieja juz rekordy odnoszace sie do druzyn w tabeli, jesli nie to inicjuje tabele ligowa
+            var teamEntries = await InitTable();
 
-            return null;
+            foreach (var result in results)
+            {
+                CalculateTeamStatsAsync(teamEntries, result);
+            }
+
+            var table = new TableDto{
+                Teams = teamEntries
+            };
+
+            return table;
 
         }
 
 
-        public async Task<List<TableTeamDto>> CalculateTeamStatsAsync()
+        public void CalculateTeamStatsAsync(List<TableTeamDto> teamEntries, Result result)
         {
-            //TODO sprawdzenie czy w bazie danych istnieja juz rekordy odnoszace sie do druzyn w tabeli, jesli nie to inicjuje tabele ligowa
-            var teamEntries = InitTable();
 
+                var teamHome = teamEntries.FirstOrDefault(t => t.TeamId == result.HomeTeamId);
+                var teamAway = teamEntries.FirstOrDefault(t => t.TeamId == result.AwayTeamId);
+                teamHome.Played += 1;
+                teamAway.Played += 1;
 
-            return null;
+                teamHome.GoalsF += result.HomeTeamScore;
+                teamHome.GoalsA += result.AwayTeamScore;
+                teamHome.GoalsDiff = teamHome.GoalsDiff + teamHome.GoalsF - teamHome.GoalsA;
+
+                teamAway.GoalsF += result.AwayTeamScore;
+                teamAway.GoalsA += result.HomeTeamScore;
+                teamAway.GoalsDiff = teamAway.GoalsDiff + teamAway.GoalsF - teamAway.GoalsA;
+
+                if(result.HomeTeamScore > result.AwayTeamScore){
+                    teamHome.Points += 3;
+                    teamHome.Wins += 1;
+                    
+                    teamAway.Loses += 1;
+                }
+                else if( result.HomeTeamScore < result.AwayTeamScore){
+                    teamAway.Points += 3;
+                    teamAway.Wins += 1;
+                    
+                    teamHome.Loses += 1;
+                }
+                else{
+                    teamHome.Points += 1;
+                    teamAway.Points += 1;
+
+                    teamHome.Draws += 1;
+                    teamAway.Draws += 1;
+                }
+
+            
         }
 
         public async Task<List<TableTeamDto>> InitTable()
