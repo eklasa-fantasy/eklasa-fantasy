@@ -21,6 +21,8 @@
     <ProjectReference Include="..\Identity.API\Identity.API.csproj" />
     <ProjectReference Include="..\Fixtures.API\Fixtures.API.csproj" />
     <ProjectReference Include="..\Identity.MigrationService\Identity.MigrationService.csproj" />
+    <ProjectReference Include="..\Results.API\Results.API.csproj" />
+    <ProjectReference Include="..\Results.MigrationService\Results.MigrationService.csproj" />
   </ItemGroup>
 
 </Project>
