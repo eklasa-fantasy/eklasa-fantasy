@@ -1,0 +1,31 @@
+<div class="team-table">
+  <div class="table-header">
+    <div class="table-column">Logo</div>
+    <div class="table-column">Zespół</div>
+    <div class="table-column">Mecze</div>
+    <div class="table-column">Wygrane</div>
+    <div class="table-column">Przegrane</div>
+    <div class="table-column">Remisy</div>
+    <div class="table-column">Punkty</div>
+    <div class="table-column">Bramki F</div>
+    <div class="table-column">Bramki A</div>
+    <div class="table-column">Różnica bramek</div>
+  </div>
+
+
+
+  <div *ngFor="let team of teams" class="team-row">
+    <div class="table-column">
+      <img [src]="team.teamBadge" alt="{{ team.teamName }} logo" class="team-logo">
+    </div>
+    <div class="table-column team-name">{{ team.teamName }}</div>
+    <div class="table-column">{{ team.played }}</div>
+    <div class="table-column">{{ team.wins }}</div>
+    <div class="table-column">{{ team.loses }}</div>
+    <div class="table-column">{{ team.draws }}</div>
+    <div class="table-column">{{ team.points }}</div>
+    <div class="table-column">{{ team.goalsF }}</div>
+    <div class="table-column">{{ team.goalsA }}</div>
+    <div class="table-column">{{ team.goalsDiff }}</div>
+  </div>
+</div>
