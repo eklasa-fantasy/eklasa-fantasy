@@ -21,10 +21,24 @@ namespace Results.API.Services
             _apiService = footballApiService;
         }
 
+        public async Task<TableDto> GetTableDtoAsync(){
+            if(await _context.Tables.AnyAsync()){
+                //TODO: update istniejacej tabeli na podstawie wynikow, ew. uzycie schedulera
+                return await MapTableToTableDtoAsync();
+            }
+            else
+            {
+                if(!await _context.Results.AnyAsync()){
+                    await _resultsService.SeedDatabase();
+                }
+  
+                var table = await CalculateTable();
+                return table;
+            }
+        }
 
         public async Task<TableDto> CalculateTable()
-        {
-
+        {       
             var results = await _context.Results
                 .ToListAsync();
 
@@ -36,9 +50,8 @@ namespace Results.API.Services
             }
 
             foreach (var team in teamEntries){
-                await _context.AddAsync(team);
+                await _context.TableTeams.AddAsync(team);
             }
-
             await _context.SaveChangesAsync();
 
             var updatedTeams = await _context.TableTeams.ToListAsync();
@@ -61,9 +74,19 @@ namespace Results.API.Services
             await _context.Tables.AddAsync(table);
             await _context.SaveChangesAsync();
 
+            var tableDto = await MapTableToTableDtoAsync();
+
+            return tableDto;
+        }
+
+        private async Task<TableDto> MapTableToTableDtoAsync(){
+            //var table = await _context.Tables.FirstAsync();
+
+            var tableTeams = await _context.TableTeams.ToListAsync();
+
             var tableDto = new TableDto 
             {
-                Teams = table.Teams.Select(team => new TableTeamDto
+                Teams = tableTeams.Select(team => new TableTeamDto
                 {
                     TeamId = team.TeamId,
                     TeamBadge = team.TeamBadge,
@@ -80,7 +103,6 @@ namespace Results.API.Services
             };
 
             return tableDto;
-
         }
 
 
@@ -150,8 +172,5 @@ namespace Results.API.Services
             }
             return teamEntries;
         }
-
     }
-
-
 }

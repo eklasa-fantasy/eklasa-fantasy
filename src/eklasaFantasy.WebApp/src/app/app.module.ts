@@ -3,14 +3,34 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { MainComponent } from './main/main.component';
+import { LoggedInComponent } from './logged-in/logged-in.component';
+import { NotLoggedInComponent } from './not-logged-in/not-logged-in.component';
+import { LoginComponent } from './login/login.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { RegisterComponent } from './register/register.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { MatchListComponent } from './match-list/match-list.component';
+import { ResultsComponent } from './results/results.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MainComponent,
+    LoggedInComponent,
+    NotLoggedInComponent,
+    LoginComponent,
+    RegisterComponent,
+    ForgotPasswordComponent,
+    MatchListComponent,
+    ResultsComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

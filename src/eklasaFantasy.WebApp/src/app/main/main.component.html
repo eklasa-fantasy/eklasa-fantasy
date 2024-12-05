@@ -1,0 +1,61 @@
+<div class="navbar">
+  <div class="logo">
+    <img src="logo" alt="Eklasa Fantasy" />
+  </div>
+  <div class="nav-buttons">
+    <button (click)="goToRegister()">Zarejestruj</button>
+    <button (click)="goToLogin()">Zaloguj</button>
+
+    <button (click)="goToResults()">Wyniki</button>
+    <button routerLink="/not-logged-in" routerLinkActive="active">Tabela</button>
+    <button (click)="goToMatchList()">Terminarz</button>
+    <button routerLink="/not-logged-in" routerLinkActive="active">Statystyki</button>
+
+    <button (click)="goToLogged()">Konto</button>
+  </div>
+</div>
+
+<div class="content">
+  <ng-container *ngIf="isLoggedIn; else guestView">
+    <app-logged-in></app-logged-in>
+  </ng-container>
+
+  <ng-template #guestView>
+    <ng-container [ngSwitch]="currentView">
+      <!-- Widok logowania -->
+      <ng-container *ngSwitchCase="'login'">
+        <app-login (switchView)="switchView($event)"></app-login>
+      </ng-container>
+
+      <!-- Widok rejestracji -->
+      <ng-container *ngSwitchCase="'register'">
+        <app-register (switchView)="switchView($event)"></app-register>
+      </ng-container>
+
+      <!-- Widok resetowania hasła -->
+      <ng-container *ngSwitchCase="'forgot-password'">
+        <app-forgot-password (switchView)="switchView($event)"></app-forgot-password>
+      </ng-container>
+
+      <!-- Widok terminarza -->
+      <ng-container *ngSwitchCase="'match-list'">
+        <app-match-list (switchView)="switchView($event)"></app-match-list>
+      </ng-container>
+
+      <!-- Widok wyników -->
+      <ng-container *ngSwitchCase="'results'">
+        <app-results (switchView)="switchView($event)"></app-results>
+    </ng-container>
+
+      <!-- Widok zalogowanego użytkownika -->
+      <ng-container *ngSwitchCase="'logged'">
+          <app-not-logged-in (switchView)="switchView($event)"></app-not-logged-in>
+      </ng-container>
+
+      <!-- Domyślny widok -->
+      <ng-container *ngSwitchDefault>
+        <p>Please choose an option.</p>
+      </ng-container>
+    </ng-container>
+  </ng-template>
+</div>

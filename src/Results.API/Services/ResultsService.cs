@@ -173,7 +173,7 @@ namespace Results.API.Services
                 }
                 catch (Exception ex)
                 {
-                    // Logowanie b³êdów lub inne dzia³ania
+                    // Logowanie bï¿½ï¿½dï¿½w lub inne dziaï¿½ania
                     Console.WriteLine($"Error processing fixture: {ex.Message}");
                 }
             }

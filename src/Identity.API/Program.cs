@@ -23,7 +23,7 @@ builder.Services.AddControllers().AddNewtonsoftJson();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.AddSqlServerDbContext<ApplicationDbContext>("sqldata");
+builder.AddSqlServerDbContext<ApplicationDbContext>("id-sqldata");
 //builder.AddNpgsqlDbContext<ApplicationDbContext>("identitydb");
 
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
@@ -33,6 +33,17 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
 builder.Services.Configure<EmailSettings>(options => 
     builder.Configuration.GetSection("EmailSettings").Bind(options)
     );
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAngular", policy =>{
+        policy.WithOrigins("http://localhost:65018")
+        .AllowAnyHeader()
+        .AllowAnyMethod()
+        .AllowCredentials();
+    });
+});
+
 
 
 builder.Services.AddAuthentication(options =>
@@ -74,6 +85,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors("AllowAngular");
 
 app.UseAuthentication();
 app.UseAuthorization();
