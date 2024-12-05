@@ -12,5 +12,6 @@ namespace Results.API.Interfaces
 
         Task<List<ResultDto>> GetResultsByRound(int round);
         Task<List<ResultDto>> GetLiveScores();
+        Task SeedDatabase();
     }
 }

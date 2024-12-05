@@ -21,95 +21,88 @@ namespace Results.API.Services
             _apiService = footballApiService;
         }
 
+        public async Task<TableDto> GetTableDtoAsync(){
+            if(await _context.Tables.AnyAsync()){
+                //TODO: update istniejacej tabeli na podstawie wynikow, ew. uzycie schedulera
+                return await MapTableToTableDtoAsync();
+            }
+            else
+            {
+                if(!await _context.Results.AnyAsync()){
+                    await _resultsService.SeedDatabase();
+                }
+  
+                var table = await CalculateTable();
+                return table;
+            }
+        }
 
         public async Task<TableDto> CalculateTable()
         {       
-            if(!await _context.Tables.AnyAsync() || !await _context.TableTeams.AnyAsync()){
-                var results = await _context.Results
-                    .ToListAsync();
+            var results = await _context.Results
+                .ToListAsync();
 
-                var teamEntries = await InitTableModels();
+            var teamEntries = await InitTableModels();
 
-                foreach (var result in results)
-                {
-                    await CalculateTeamModelsStatsAsync(teamEntries, result);
-                }
-
-                foreach (var team in teamEntries){
-                    await _context.TableTeams.AddAsync(team);
-                }
-
-                await _context.SaveChangesAsync();
-
-                var updatedTeams = await _context.TableTeams.ToListAsync();
-
-                var table = new Table
-                {
-                    Teams = updatedTeams
-                };
-
-                table.Teams.Sort((t1, t2) =>
-                {
-                    int pointComparison = t2.Points.CompareTo(t1.Points);
-
-                    if(pointComparison == 0){
-                        return t2.GoalsDiff.CompareTo(t1.GoalsDiff);
-                    }
-                    return pointComparison;
-                });
-
-                await _context.Tables.AddAsync(table);
-                await _context.SaveChangesAsync();
-
-                var tableDto = new TableDto 
-                    {
-                        Teams = table.Teams.Select(team => new TableTeamDto
-                        {
-                            TeamId = team.TeamId,
-                            TeamBadge = team.TeamBadge,
-                            TeamName = team.TeamName,
-                            Played = team.Played,
-                            Wins = team.Wins,
-                            Loses = team.Loses,
-                            Draws = team.Draws,
-                            Points = team.Points,
-                            GoalsF = team.GoalsF,
-                            GoalsA = team.GoalsA,
-                            GoalsDiff = team.GoalsDiff
-                        }).ToList()
-                    };
-
-            return tableDto;
-
-            }else{
-                var table = await _context.Tables.FirstAsync();
-
-                if(table == null || table.Teams == null){
-                    return null;
-                }else{
-                    var tableDto = new TableDto 
-                    {
-                        Teams = table.Teams.Select(team => new TableTeamDto
-                        {
-                            TeamId = team.TeamId,
-                            TeamBadge = team.TeamBadge,
-                            TeamName = team.TeamName,
-                            Played = team.Played,
-                            Wins = team.Wins,
-                            Loses = team.Loses,
-                            Draws = team.Draws,
-                            Points = team.Points,
-                            GoalsF = team.GoalsF,
-                            GoalsA = team.GoalsA,
-                            GoalsDiff = team.GoalsDiff
-                        }).ToList()
-                    };
-
-                    return tableDto;
-                }
+            foreach (var result in results)
+            {
+                await CalculateTeamModelsStatsAsync(teamEntries, result);
             }
 
+            foreach (var team in teamEntries){
+                await _context.TableTeams.AddAsync(team);
+            }
+            await _context.SaveChangesAsync();
 
+            var updatedTeams = await _context.TableTeams.ToListAsync();
+
+            var table = new Table
+            {
+                Teams = updatedTeams
+            };
+
+            table.Teams.Sort((t1, t2) =>
+            {
+                int pointComparison = t2.Points.CompareTo(t1.Points);
+
+                if(pointComparison == 0){
+                    return t2.GoalsDiff.CompareTo(t1.GoalsDiff);
+                }
+                return pointComparison;
+            });
+
+            await _context.Tables.AddAsync(table);
+            await _context.SaveChangesAsync();
+
+            var tableDto = await MapTableToTableDtoAsync();
+
+            return tableDto;
+        }
+
+        private async Task<TableDto> MapTableToTableDtoAsync(){
+            //var table = await _context.Tables.FirstAsync();
+
+            var tableTeams = await _context.TableTeams.ToListAsync();
+
+            var tableDto = new TableDto 
+            {
+                Teams = tableTeams.Select(team => new TableTeamDto
+                {
+                    TeamId = team.TeamId,
+                    TeamBadge = team.TeamBadge,
+                    TeamName = team.TeamName,
+                    Played = team.Played,
+                    Wins = team.Wins,
+                    Loses = team.Loses,
+                    Draws = team.Draws,
+                    Points = team.Points,
+                    GoalsF = team.GoalsF,
+                    GoalsA = team.GoalsA,
+                    GoalsDiff = team.GoalsDiff
+                }).ToList()
+            };
+
+            return tableDto;
         }
 
 
@@ -179,8 +172,5 @@ namespace Results.API.Services
             }
             return teamEntries;
         }
-
     }
-
-
 }

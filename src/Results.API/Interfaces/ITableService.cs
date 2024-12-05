@@ -5,7 +5,7 @@ namespace Results.API.Interfaces
 {   
     public interface ITableService
     {
-        Task<TableDto> CalculateTable();
+        Task<TableDto> GetTableDtoAsync();
     }
 
 }

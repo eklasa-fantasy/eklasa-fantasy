@@ -172,7 +172,7 @@ namespace Results.API.Controllers
         {
             try
             {
-                var table = await _tableService.CalculateTable();
+                var table = await _tableService.GetTableDtoAsync();
 
                 if (table == null || table.Teams.Count() != 18)
                 {
