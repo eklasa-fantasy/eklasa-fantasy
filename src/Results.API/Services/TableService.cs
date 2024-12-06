@@ -84,6 +84,16 @@ namespace Results.API.Services
 
             var tableTeams = await _context.TableTeams.ToListAsync();
 
+            tableTeams.Sort((t1, t2) =>
+            {
+                int pointComparison = t2.Points.CompareTo(t1.Points);
+
+                if(pointComparison == 0){
+                    return t2.GoalsDiff.CompareTo(t1.GoalsDiff);
+                }
+                return pointComparison;
+            });
+
             var tableDto = new TableDto 
             {
                 Teams = tableTeams.Select(team => new TableTeamDto

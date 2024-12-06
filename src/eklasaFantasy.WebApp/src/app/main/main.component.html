@@ -7,7 +7,7 @@
     <button (click)="goToLogin()">Zaloguj</button>
 
     <button (click)="goToResults()">Wyniki</button>
-    <button routerLink="/not-logged-in" routerLinkActive="active">Tabela</button>
+    <button (click)="goToTable()">Tabela</button>
     <button (click)="goToMatchList()">Terminarz</button>
     <button routerLink="/not-logged-in" routerLinkActive="active">Statystyki</button>
 
@@ -41,6 +41,11 @@
       <ng-container *ngSwitchCase="'match-list'">
         <app-match-list (switchView)="switchView($event)"></app-match-list>
       </ng-container>
+
+      <!-- Widok tabeli -->
+      <!-- <ng-container *ngSwitchCase="'table'"> -->
+        <!-- <app-table (switchView)="switchView($event)"></app-table>
+      </ng-container> -->
 
       <!-- Widok wyników -->
       <ng-container *ngSwitchCase="'results'">

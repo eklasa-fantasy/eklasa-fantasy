@@ -54,5 +54,8 @@ export class MainComponent {
   goToMatchList(){
     this.switchView('match-list');
   }
+  goToTable(){
+    this.switchView('table');
+  }
   
 }

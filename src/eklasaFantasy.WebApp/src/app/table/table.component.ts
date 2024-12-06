@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { ApiResponse, Team } from './team.model';
 
 @Component({
   selector: 'app-table',
@@ -7,34 +8,32 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./table.component.css']
 })
 export class TableComponent implements OnInit {
-  teams: any[] = [];
+  teams: Team[] = [];
   loading: boolean = true;
   error: string | null = null;
 
-  //private apiUrl = 'https://localhost:7097/api/results/table';
-  private apiUrl = 'http://localhost:3000/teams';
+  private apiUrl = 'https://localhost:7097/api/results/table';
+  //private apiUrl = 'http://localhost:3000/teams';
 
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
     this.fetchLeagueTable();
-
-    console.log(this.teams);
   }
 
   fetchLeagueTable(): void {
-    this.http.get<any[]>(this.apiUrl).subscribe({
-      next: (response) => {
-        console.log(response);
-        this.teams = response;
+    this.http.get<ApiResponse>(this.apiUrl)
+    .subscribe(
+      (data) => {
+        this.teams = data.teams;
         this.loading = false;
       },
-      error: (err) => {
+      (err) => {
         console.error('Błąd podczas pobierania danych z API:', err);
         this.error = 'Nie udało się załadować danych.';
         this.loading = false;
       }
-    });
+    );
   }
 
 }

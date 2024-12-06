@@ -13,6 +13,7 @@ import { RegisterComponent } from './register/register.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { MatchListComponent } from './match-list/match-list.component';
 import { ResultsComponent } from './results/results.component';
+import { TableComponent } from './table/table.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ResultsComponent } from './results/results.component';
     RegisterComponent,
     ForgotPasswordComponent,
     MatchListComponent,
-    ResultsComponent
+    ResultsComponent,
+    TableComponent
   ],
   imports: [
     BrowserModule,
