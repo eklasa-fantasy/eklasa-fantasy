@@ -19,7 +19,9 @@ namespace Results.API.Services
 
         public async Task<List<ResultDto>> GetResultsAll()
         {
-            await SeedDatabase();
+            if(await _context.Results.CountAsync() == 0){
+                //await SeedDatabase();
+            }
 
             var results = await _context.Results
                 .Include(r => r.GoalScorers)
@@ -103,11 +105,9 @@ namespace Results.API.Services
 
         public async Task SeedDatabase()
         {
-            if (!_context.Results.Any())
+            if (!await _context.Results.AnyAsync() && await _context.Results.CountAsync() == 0)
             {
-
                 var resultDtos = await _apiService.GetResultsAsync("2024-07-19", $"{DateTime.Now:yyyy-MM-dd}");
-
                 await this.SaveApiFixturesToDatabase(resultDtos);
             }
         }
@@ -179,7 +179,7 @@ namespace Results.API.Services
             }
 
             // Zapisanie zmian w bazie danych
-            await _context.SaveChangesAsync();
+            //await _context.SaveChangesAsync();
         }
 
 

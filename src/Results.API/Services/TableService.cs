@@ -28,7 +28,7 @@ namespace Results.API.Services
             }
             else
             {
-                if(!await _context.Results.AnyAsync()){
+                if(!await _context.Results.AnyAsync() && await _context.Results.CountAsync() == 0){
                     await _resultsService.SeedDatabase();
                 }
   
